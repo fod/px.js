@@ -124,21 +124,19 @@ var Px = (function () {
 	    return datacol;
 	},
 
-	// datadict: function(s) {
-	//     var counts = this.valCounts();
+	datadict: function(s) {
 	    
-	//     var datadict = {};
-	//     var grpIdx = _.indexOf(s, '*');
-	//     var codes = 
+	    var datadict = {},
+	        grpIdx = _.indexOf(s, '*'),
+	        codes = this.codes(grpIdx),
+	        datacol = this.datacol(s);
 
-	//     for (var i = 0; i < counts[grpIdx]; i++) {
-	// 	s[grpIdx] = i;
-		
-	// 	// if true is passed as 2nd arg indices rather than values are returned
-	// 	datacol.push(this.datum(s,arguments[1]));
-	//     }
-	//     return datacol;
-	// },
+	    _.each(datacol, function(d, i) {
+		datadict[codes[i]] = d;
+	    });
+
+	    return datadict;
+	},
 	    
 
 	datatable: function(s) {
