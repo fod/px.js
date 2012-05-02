@@ -293,7 +293,12 @@ var Px = (function () {
 
 		if (!metadata[key]) metadata[key] = {};
 
-		metadata[key][opt] = vals.length === 1 ? vals[0] : vals;
+		if (key !== 'VALUES') { // ensure that a single VALUES otion still gets assigned to an array
+		    metadata[key][opt] = vals.length === 1 ? vals[0] : vals;
+		}
+		else {
+		    metadata[key][opt] = vals;
+		}
 
 	    }
 
