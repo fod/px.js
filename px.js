@@ -319,7 +319,7 @@ var Px = (function () {
 	    this.data = data;
 	}
 	
-    }
+    };
 
     return Px;
 
