@@ -293,7 +293,7 @@ var Px = (function () {
 
 		if (!metadata[key]) metadata[key] = {};
 
-		if (key !== 'VALUES') { // ensure that a single VALUES otion still gets assigned to an array
+		if (key !== 'VALUES') { // ensure that a single VALUES option still gets assigned to an array
 		    metadata[key][opt] = vals.length === 1 ? vals[0] : vals;
 		}
 		else {
