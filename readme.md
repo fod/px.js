@@ -1,4 +1,4 @@
-PC-Axis file parsing in JavaScript
+px.js - PC-Axis file parsing in JavaScript
 ===
 
 ### Dependencies
