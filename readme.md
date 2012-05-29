@@ -3,7 +3,7 @@ px.js - PC-Axis file parsing in JavaScript
 
 ### Dependencies
 
-[underscore.js](underscorejs.org)
+[underscore.js](http://underscorejs.org)
 
 
 ### Synopsis
