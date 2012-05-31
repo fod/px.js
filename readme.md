@@ -29,10 +29,10 @@ px.js - PC-Axis file parsing in JavaScript
     var codes = pxfile.codes(variable);
     
     // get the data value for a passed array of variable values
-    my datapoint = pxfile.datum([0,0,0,0]);
+    var datapoint = pxfile.datum([0,0,0,0]);
 
     // get a column of data
-    my column = pxfile.datacol(['*',0,0,0]);    
+    var column = pxfile.datacol(['*',0,0,0]);    
 
 
 
