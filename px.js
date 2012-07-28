@@ -279,12 +279,12 @@ var Px = (function () {
 	    var pxData = pxSplit[1];
 
 	    // parse metadata
-	    for (var i = 0, pxLen = pxMetadata.length; i < pxLen; i++) {
-		
+	    for (var i = 0, pxLen = pxMetadata.length; i < pxLen - 1; i++) {
+
 		var keyOptVal = 
 		    pxMetadata[i]
 		    .match(/^(.+?)(?:\((.+?)\))?=(.+)$/);
-
+console.log(keyOptVal);
 		if (!keyOptVal[2]) keyOptVal[2] = 'TABLE';
 
 		var key = keyOptVal[1];
