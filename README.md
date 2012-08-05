@@ -8,6 +8,7 @@ px.js - PC-Axis file parsing in JavaScript
 
 ### Synopsis
 
+```javascript
     // construction
     var pxfile = Px.new('path/to/pcaxis/file.px');
 
@@ -33,22 +34,21 @@ px.js - PC-Axis file parsing in JavaScript
 
     // get a column of data
     var column = pxfile.datacol(['*',0,0,0]);    
-
+```
 
 ## Getting Started
 ### On the server
-Install the module with: `npm install px-js`
+Install the module with: `npm install px.js`
 
 ```javascript
-var px_js = require('px-js');
-px_js.awesome(); // "awesome"
+var Px = require('px.js');
 ```
 
 ### In the browser
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/fod/px-js/master/dist/px.min.js
-[max]: https://raw.github.com/fod/px-js/master/dist/px.js
+[min]: https://raw.github.com/fod/px.js/master/dist/px.min.js
+[max]: https://raw.github.com/fod/px.js/master/dist/px.js
 
 
 ## Documentation
