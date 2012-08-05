@@ -23,10 +23,10 @@ module.exports = function(grunt) {
             }
         },
         test: {
-            files: ['test/**/*.js']
+            files: ['test/*.js']
         },
         lint: {
-            files: ['grunt.js', 'lib/**/*.js']
+            files: ['grunt.js', 'lib/**/*.js', 'test/*.js']
         },
         watch: {
             files: '<config:lint.files>',
@@ -48,6 +48,7 @@ module.exports = function(grunt) {
                 loopfunc: true
             },
             globals: {
+		GLOBAL: false,
                 _: false,
                 require: false,
                 console: false,
