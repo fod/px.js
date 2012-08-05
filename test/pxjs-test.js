@@ -1,4 +1,4 @@
-$.get('VSA31.px', function(data) {
+$.get('qunit/VSA31.px', function(data) {
     window.px = new Px(data);
 });
 
