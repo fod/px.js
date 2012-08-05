@@ -1,0 +1,42 @@
+[
+    {"filename":"VSA31.px",
+     "encoding":"utf8",
+     "title":"Period Life Expectancy (Years) by Region, Year, Sex and Age",
+     "numKeywords":24,
+     "numVars":4,
+     "numData":64,
+     "firstDatum":74.80,
+     "lastDatum":20.00
+     },
+
+    {"filename":"VSA32.px",
+     "encoding":"utf8",
+     "title":"Period Life Expectancy by Sex, Age x, Year and Statistic",
+     "numKeywords":28,
+     "numVars":4,
+     "numData":1484,
+     "firstDatum":100000.000000,
+     "lastDatum":0.770000
+     },
+
+    {"filename":"020101.px",
+     "encoding":"utf8",
+     "title":"020101. Чисельність населення",
+     "numKeywords":42,
+     "numVars":3,
+     "numData":682,
+     "firstDatum":32574371,
+     "lastDatum":66361
+     },
+
+    {"filename":"07A01_02.px",
+     "encoding":"utf8",
+     "title":"Загальна площа житлового фонду (тис. кв.м) - Територія і Рік",
+     "numKeywords":37,
+     "numVars":2,
+     "numData":360,
+     "firstDatum":49988.4,
+     "lastDatum":2346.9
+     }
+]
+
