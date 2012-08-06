@@ -33,29 +33,52 @@ var runTests = function(i) {
     };
 
     exports[testPrefix + '-Metadata'] = function(test) {
-	var numVars = px.variables().length;
+        var numVars = px.variables().length;
 
-        test.expect(5 + (numVars * 2));
+        test.expect(6 + (numVars * 8));
 
+        // Px.title()
         test.ok(px.title(), 'Px object has title');
         test.equal(px.title(), testData[i].title, 'Title is correct');
+
+        // Px.metadata
         test.equal(_.size(px.metadata), testData[i].numKeywords, 'Correct number of metadata entries');
-     	test.equal(numVars, testData[i].numVars, 'Correct number of variables');
-	test.deepEqual(px.variables(), testData[i].varNames, 'Correct array of variable names');
 
-	for (var varNum = 0; varNum < numVars; varNum++) {
+        // Px.variables()
+        test.equal(numVars, testData[i].numVars, 'Correct number of variables');
+        test.deepEqual(px.variables(), testData[i].varNames, 'Correct array of variable names');
 
-	    var varName = testData[i].varNames[varNum];
+        for (var varNum = 0; varNum < numVars; varNum++) {
 
-	    test.equal(px.values(varNum).length, testData[i].numVals[varNum], 
-		       'Correct number of values (accessed by variable index) for variable ' 
-		       + varNum + ' (' + varName + ')');
+            var varName = testData[i].varNames[varNum];
 
-	    test.equal(px.values(testData[i].varNames[varNum]).length, testData[i].numVals[varNum], 
-		       'Correct number of values (accessed by variable name) for variable ' 
-		       + varNum + ' (' + varName + ')');
+            // Px.variable()
+            test.equal(px.variable(varNum), varName, 'Access variable name by index');
+            test.equal(px.variable(varName), varNum, 'Access variable index by name');
 
-	}
+            // Px.values()
+            test.equal(px.values(varNum).length, testData[i].numVals[varNum], 
+                       'Correct number of values (accessed by variable index) for variable ' 
+                       + varNum + ' (' + varName + ')');
+            test.equal(px.values(varName).length, testData[i].numVals[varNum], 
+                       'Correct number of values (accessed by variable name) for variable ' 
+                       + varNum + ' (' + varName + ')');
+            test.equal(px.values(varNum)[0], testData[i].firstLastVals[varNum][0],
+                       'Correct first value for variable ' + varNum + ' (' + varName + ')');
+            test.equal(px.values(varNum)[px.values(varNum).length - 1], testData[i].firstLastVals[varNum][1],
+                       'Correct last value for variable ' + varNum + ' (' + varName + ')');
+
+            // Px.codes()
+            test.equal(px.codes(varNum).length, testData[i].numVals[varNum], 
+                       'Correct number of codes (accessed by variable index) for variable ' 
+                       + varNum + ' (' + varName + ')');
+            test.equal(px.codes(varName).length, testData[i].numVals[varNum], 
+                       'Correct number of codes (accessed by variable name) for variable ' 
+                       + varNum + ' (' + varName + ')');
+            
+        }
+            // Px.valCounts
+            test.deepEqual(px.valCounts(), testData[i].numVals, 'Correct value counts array'); 
 
         test.done();
     };

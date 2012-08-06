@@ -1,4 +1,4 @@
-/*! px - v0.1.0 - 2012-08-05
+/*! px - v0.1.0 - 2012-08-06
 * https://github.com/fod/px.js
 * Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
 
@@ -56,9 +56,6 @@
                 else if (typeof(v) === 'string') {
                     return _.indexOf(vars, v);
                 }
-                else if (_.isRegExp(v)) {
-                    return _.indexOf(vars, _.find(vars, function(el) { return el.match(v); }));
-                }
                 else {
                     return undefined;
                 }
@@ -80,7 +77,12 @@
                     ? this.variable(v) 
                     : this.variables()[this.variable(v)];
 
-                return this.keyword('CODES')[varName];
+                if (!this.metadata.CODES || !this.keyword('CODES')[varName]) {
+                    return this.keyword('VALUES')[varName];
+                }
+                else {
+                    return this.keyword('CODES')[varName];
+                }
             },
 
             valCounts: function() {
@@ -135,9 +137,9 @@
             datadict: function(s) {
                 
                 var datadict = {},
-                grpIdx = _.indexOf(s, '*'),
-                codes = this.codes(grpIdx),
-                datacol = this.datacol(s);
+                    grpIdx = _.indexOf(s, '*'),
+                    codes = this.codes(grpIdx),
+                    datacol = this.datacol(s);
 
                 _.each(datacol, function(d, i) {
                     datadict[codes[i]] = d;

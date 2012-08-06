@@ -8,7 +8,8 @@
      "firstDatum":74.80,
      "lastDatum":20.00,
      "numVals":[8,2,2,2],
-     "varNames":["Region","Year","Sex","Age"]
+     "varNames":["Region","Year","Sex","Age"],
+     "firstLastVals":[["Border","South-West"],["2002","2006"],["Male","Female"],["Birth","65 years"]]
      },
 
     {"filename":"VSA32.px",
@@ -20,7 +21,8 @@
      "firstDatum":100000.000000,
      "lastDatum":0.770000,
      "numVals":[2,106,1,7],
-     "varNames":["Sex","Age x","Year","Statistic"]
+     "varNames":["Sex","Age x","Year","Statistic"],
+     "firstLastVals":[["Male","Female"],["Birth","105 years"],["2006","2006"],["Ix (Number)","e0x (Number)"]]
      },
 
     {"filename":"020101.px",
@@ -32,7 +34,8 @@
      "firstDatum":32574371,
      "lastDatum":66361,
      "numVals":[31,11,2],
-     "varNames":["Територія","Рік","Тип поселення"]
+     "varNames":["Територія","Рік","Тип поселення"],
+     "firstLastVals":[["Україна","Яворівський район"],["2001","2011"],[" міські поселення"," сільська місцевість"]]
      },
 
     {"filename":"07A01_02.px",
@@ -44,7 +47,8 @@
      "firstDatum":49988.4,
      "lastDatum":2346.9,
      "numVals":[30,12],
-     "varNames":["Територія","Рік"]
+     "varNames":["Територія","Рік"],
+     "firstLastVals":[["Львівська область","Яворівський район"],["2000","2011"]]
      }
 ]
 
