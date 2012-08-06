@@ -1,6 +1,6 @@
 $(function() {
 
-      document.getElementById('pxfile').onchange = handlePxfile;
+    document.getElementById('pxfile').onchange = handlePxfile;
 
     window.px = {};
     function handlePxfile() {

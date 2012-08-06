@@ -24,18 +24,39 @@ var runTests = function(i) {
             px = new Px(data);
 
             test.expect(2);
+
             test.ok(px, 'px exists');
             test.equal(typeof(px), 'object', 'px is an object');
+
             test.done();
         });
     };
 
     exports[testPrefix + '-Metadata'] = function(test) {
-        test.expect(4);
+	var numVars = px.variables().length;
+
+        test.expect(5 + (numVars * 2));
+
         test.ok(px.title(), 'Px object has title');
         test.equal(px.title(), testData[i].title, 'Title is correct');
         test.equal(_.size(px.metadata), testData[i].numKeywords, 'Correct number of metadata entries');
-        test.equal(_.size(px.variables()), testData[i].numVars, 'Correct number of variables');
+     	test.equal(numVars, testData[i].numVars, 'Correct number of variables');
+	test.deepEqual(px.variables(), testData[i].varNames, 'Correct array of variable names');
+
+	for (var varNum = 0; varNum < numVars; varNum++) {
+
+	    var varName = testData[i].varNames[varNum];
+
+	    test.equal(px.values(varNum).length, testData[i].numVals[varNum], 
+		       'Correct number of values (accessed by variable index) for variable ' 
+		       + varNum + ' (' + varName + ')');
+
+	    test.equal(px.values(testData[i].varNames[varNum]).length, testData[i].numVals[varNum], 
+		       'Correct number of values (accessed by variable name) for variable ' 
+		       + varNum + ' (' + varName + ')');
+
+	}
+
         test.done();
     };
 
@@ -43,13 +64,12 @@ var runTests = function(i) {
         test.expect(3);
 
         test.equal(_.size(px.data), testData[i].numData, 'Correct number of data points');
-
         test.equal(px.datum(arrayOfZeroes(_.size(px.variables()))), 
                    testData[i].firstDatum, 'Correct value for first data point');
 
         var lastDatum = _.map(px.valCounts(), function(d) { return d - 1; });
-        test.equal(px.datum(lastDatum), 
-                   testData[i].lastDatum, 'Correct value for last data point');
+        test.equal(px.datum(lastDatum), testData[i].lastDatum, 'Correct value for last data point');
+
         test.done();
     };
 

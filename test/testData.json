@@ -6,7 +6,9 @@
      "numVars":4,
      "numData":64,
      "firstDatum":74.80,
-     "lastDatum":20.00
+     "lastDatum":20.00,
+     "numVals":[8,2,2,2],
+     "varNames":["Region","Year","Sex","Age"]
      },
 
     {"filename":"VSA32.px",
@@ -16,7 +18,9 @@
      "numVars":4,
      "numData":1484,
      "firstDatum":100000.000000,
-     "lastDatum":0.770000
+     "lastDatum":0.770000,
+     "numVals":[2,106,1,7],
+     "varNames":["Sex","Age x","Year","Statistic"]
      },
 
     {"filename":"020101.px",
@@ -26,7 +30,9 @@
      "numVars":3,
      "numData":682,
      "firstDatum":32574371,
-     "lastDatum":66361
+     "lastDatum":66361,
+     "numVals":[31,11,2],
+     "varNames":["Територія","Рік","Тип поселення"]
      },
 
     {"filename":"07A01_02.px",
@@ -36,7 +42,9 @@
      "numVars":2,
      "numData":360,
      "firstDatum":49988.4,
-     "lastDatum":2346.9
+     "lastDatum":2346.9,
+     "numVals":[30,12],
+     "varNames":["Територія","Рік"]
      }
 ]
 

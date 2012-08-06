@@ -10,30 +10,30 @@ px.js - PC-Axis file parsing in JavaScript
 
 ```javascript
 // construction
-var pxfile = Px.new('path/to/pcaxis/file.px');
+var px = new Px();
 
 // get values for keyword
-var title = pxfile.keyword('TITLE');
+var title = px.keyword('TITLE');
 
 // get array of keywords
-var keys = pxfile.keywords();
+var keys = px.keywords();
 
 // get array of variables (STUBs & HEADINGs)
-var vars = pxfile.variables();
+var vars = px.variables();
 
 // get array of values for passed variable
 // (can take array index, regular expression, or variable name)
-var values = pxfile.values(variable);
+var values = px.values(variable);
 
 // get array of value CODEs for passed variable
 // (can take array index or variable name)
-var codes = pxfile.codes(variable);
+var codes = px.codes(variable);
     
 // get the data value for a passed array of variable values
-var datapoint = pxfile.datum([0,0,0,0]);
+var datapoint = px.datum([0,0,0,0]);
 
 // get a column of data
-var column = pxfile.datacol(['*',0,0,0]);    
+var column = px.datacol(['*',0,0,0]);    
 ```
 
 ## Getting Started
