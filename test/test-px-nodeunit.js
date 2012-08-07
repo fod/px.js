@@ -35,7 +35,7 @@ var runTests = function(i) {
     exports[testPrefix + '-Metadata'] = function(test) {
         var numVars = px.variables().length;
 
-        test.expect(6 + (numVars * 8));
+        test.expect(6 + (numVars * 14));
 
         // Px.title()
         test.ok(px.title(), 'Px object has title');
@@ -75,10 +75,31 @@ var runTests = function(i) {
             test.equal(px.codes(varName).length, testData[i].numVals[varNum], 
                        'Correct number of codes (accessed by variable name) for variable ' 
                        + varNum + ' (' + varName + ')');
+            test.equal(px.codes(varNum)[0], testData[i].firstLastCodes[varNum][0],
+                       'Correct first code for variable ' + varNum + ' (' + varName + ')');
+            test.equal(px.codes(varNum)[px.values(varNum).length - 1], testData[i].firstLastCodes[varNum][1],
+                       'Correct last code for variable ' + varNum + ' (' + varName + ')');
+
+            // Px.value()
+            test.equal(px.value(testData[i].firstLastCodes[varNum][0], varName), 
+                       testData[i].firstLastVals[varNum][0],
+                       'Correct value returned for first code');
+            test.equal(px.value(testData[i].firstLastCodes[varNum][1], varName), 
+                       testData[i].firstLastVals[varNum][1],
+                       'Correct value returned for last code');
+
+            // Px.code()
+            test.equal(px.code(testData[i].firstLastVals[varNum][0], varName), 
+                       testData[i].firstLastCodes[varNum][0],
+                       'Correct code returned for first value');
+            test.equal(px.code(testData[i].firstLastVals[varNum][1], varName), 
+                       testData[i].firstLastCodes[varNum][1],
+                       'Correct code returned for last value');
             
         }
-            // Px.valCounts
-            test.deepEqual(px.valCounts(), testData[i].numVals, 'Correct value counts array'); 
+
+        // Px.valCounts
+        test.deepEqual(px.valCounts(), testData[i].numVals, 'Correct value counts array'); 
 
         test.done();
     };

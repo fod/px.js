@@ -9,7 +9,8 @@
      "lastDatum":20.00,
      "numVals":[8,2,2,2],
      "varNames":["Region","Year","Sex","Age"],
-     "firstLastVals":[["Border","South-West"],["2002","2006"],["Male","Female"],["Birth","65 years"]]
+     "firstLastVals":[["Border","South-West"],["2002","2006"],["Male","Female"],["Birth","65 years"]],
+     "firstLastCodes":[["IE11","IE25"],["2002","2006"],["1","2"],["000","065"]]
      },
 
     {"filename":"VSA32.px",
@@ -22,7 +23,8 @@
      "lastDatum":0.770000,
      "numVals":[2,106,1,7],
      "varNames":["Sex","Age x","Year","Statistic"],
-     "firstLastVals":[["Male","Female"],["Birth","105 years"],["2006","2006"],["Ix (Number)","e0x (Number)"]]
+     "firstLastVals":[["Male","Female"],["Birth","105 years"],["2006","2006"],["Ix (Number)","e0x (Number)"]],
+     "firstLastCodes":[["1","2"],["000","105"],["2006","2006"],["VSA32C1","VSA32C7"]]
      },
 
     {"filename":"020101.px",
@@ -35,7 +37,8 @@
      "lastDatum":66361,
      "numVals":[31,11,2],
      "varNames":["“еритор≥€","–≥к","“ип поселенн€"],
-     "firstLastVals":[["”крањна","явор≥вський район"],["2001","2011"],[" м≥ськ≥ поселенн€"," с≥льська м≥сцев≥сть"]]
+     "firstLastVals":[["”крањна","явор≥вський район"],["2001","2011"],[" м≥ськ≥ поселенн€"," с≥льська м≥сцев≥сть"]],
+     "firstLastCodes":[["00000000000","04625800000"],["2001","2011"],[" м≥ськ≥ поселенн€"," с≥льська м≥сцев≥сть"]]
      },
 
     {"filename":"07A01_02.px",
@@ -48,7 +51,8 @@
      "lastDatum":2346.9,
      "numVals":[30,12],
      "varNames":["“еритор≥€","–≥к"],
-     "firstLastVals":[["Ћьв≥вська область","явор≥вський район"],["2000","2011"]]
+     "firstLastVals":[["Ћьв≥вська область","явор≥вський район"],["2000","2011"]],
+     "firstLastCodes":[["Ћьв≥вська область","явор≥вський район"],["2000","2011"]]
      }
 ]
 

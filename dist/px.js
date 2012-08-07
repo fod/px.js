@@ -1,4 +1,4 @@
-/*! px - v0.1.0 - 2012-08-06
+/*! px - v0.1.0 - 2012-08-07
 * https://github.com/fod/px.js
 * Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
 
@@ -70,7 +70,6 @@
                 return this.keyword('VALUES')[varName];
             },
 
-            /// TODO Return values if no codes (e.g. for year)
             codes: function(v) {
                 var varName = 
                     typeof(v) === 'number' 
@@ -91,12 +90,14 @@
                 return counts;
             },
 
-            value: function() {
-
+            value: function(code, variable) {
+		var idx = _.indexOf(this.codes(variable), code);
+		return this.values(variable)[idx];
             },
 
-            code: function() {
-                
+            code: function(val, variable) {
+                var idx = _.indexOf(this.values(variable), val);
+		return this.codes(variable)[idx];
             },
 
             datum: function(s) {
