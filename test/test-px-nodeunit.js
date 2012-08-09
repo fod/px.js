@@ -118,11 +118,11 @@ var runTests = function(i) {
 
         var lastDatum = _.map(px.valCounts(), function(d) { return d - 1; });
         test.equal(px.datum(lastDatum), testData[i].lastDatum,
-		   'Correct value for last data point');
+                   'Correct value for last data point');
 
-	var midDatum = _.map(px.valCounts(), function(d) {return Math.floor(d/2)});
-	test.equal(px.datum(midDatum), testData[i].midDatum,
-		   'Correct value for middle data point (' + midDatum + ')');
+        var midDatum = _.map(px.valCounts(), function(d) {return Math.floor(d/2); });
+        test.equal(px.datum(midDatum), testData[i].midDatum,
+                   'Correct value for middle data point (' + midDatum + ')');
 
         test.done();
     };
