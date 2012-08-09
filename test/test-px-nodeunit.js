@@ -1,8 +1,10 @@
 GLOBAL._ = require('underscore');
 var Px = require('../lib/px.js'),
-    fs = require('fs');
+    fs = require('fs'),
+    iconv = require('iconv-lite');
 
 var testData = require('./testData.json');
+
 var numTestCases = testData.length;
 
 var arrayOfZeroes = function(l) {
@@ -18,9 +20,10 @@ var runTests = function(i) {
     var pxfile = 'test/testData/' + testData[i].filename;
     var testPrefix = i;
     exports[testPrefix + '-Instantiation'] = function(test) {
-        fs.readFile(pxfile, testData[i].encoding, function(err, data) {
+        fs.readFile(pxfile,'binary', function(err, data) {
             if (err) { throw err; }
             console.log('\nTesting ' + pxfile + '...');
+
             px = new Px(data);
 
             test.expect(2);
@@ -50,7 +53,8 @@ var runTests = function(i) {
 
         for (var varNum = 0; varNum < numVars; varNum++) {
 
-            var varName = testData[i].varNames[varNum];
+            //var varName = testData[i].varNames[varNum];
+            var varName = px.variable(varNum);
 
             // Px.variable()
             test.equal(px.variable(varNum), varName, 'Access variable name by index');
@@ -81,22 +85,22 @@ var runTests = function(i) {
                        'Correct last code for variable ' + varNum + ' (' + varName + ')');
 
             // Px.value()
-            test.equal(px.value(testData[i].firstLastCodes[varNum][0], varName), 
+            test.equal(px.value(px.codes(varName)[0], varName), 
                        testData[i].firstLastVals[varNum][0],
                        'Correct value returned for first code');
-            test.equal(px.value(testData[i].firstLastCodes[varNum][1], varName), 
+            test.equal(px.value(px.codes(varName)[px.codes(varName).length-1], varName), 
                        testData[i].firstLastVals[varNum][1],
                        'Correct value returned for last code');
 
             // Px.code()
-            test.equal(px.code(testData[i].firstLastVals[varNum][0], varName), 
+            test.equal(px.code(px.values(varName)[0], varName), 
                        testData[i].firstLastCodes[varNum][0],
                        'Correct code returned for first value');
-            test.equal(px.code(testData[i].firstLastVals[varNum][1], varName), 
+            test.equal(px.code(px.values(varName)[px.values(varName).length-1], varName), 
                        testData[i].firstLastCodes[varNum][1],
                        'Correct code returned for last value');
-            
-        }
+
+         }
 
         // Px.valCounts
         test.deepEqual(px.valCounts(), testData[i].numVals, 'Correct value counts array'); 

@@ -1,14 +1,15 @@
-/*! px - v0.1.0 - 2012-08-07
+/*! px - v0.1.0 - 2012-08-09
 * https://github.com/fod/px.js
 * Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
 
- (function() {
+(function() {
     'use strict';
 
     var root = this;
+    var nodeEnv = false;
 
     var Px = (function () {
-        
+
         function Px(pxString) {
             this.ctor(pxString);
         }
@@ -91,13 +92,13 @@
             },
 
             value: function(code, variable) {
-		var idx = _.indexOf(this.codes(variable), code);
-		return this.values(variable)[idx];
+                var idx = _.indexOf(this.codes(variable), code);
+                return this.values(variable)[idx];
             },
 
             code: function(val, variable) {
                 var idx = _.indexOf(this.values(variable), val);
-		return this.codes(variable)[idx];
+                return this.codes(variable)[idx];
             },
 
             datum: function(s) {
@@ -138,9 +139,9 @@
             datadict: function(s) {
                 
                 var datadict = {},
-                    grpIdx = _.indexOf(s, '*'),
-                    codes = this.codes(grpIdx),
-                    datacol = this.datacol(s);
+                grpIdx = _.indexOf(s, '*'),
+                codes = this.codes(grpIdx),
+                datacol = this.datacol(s);
 
                 _.each(datacol, function(d, i) {
                     datadict[codes[i]] = d;
@@ -172,7 +173,6 @@
                 for (var i = 0; i < counts[chgIdx]; i++) {
                     s[grpIdx] = '*';
                     s[chgIdx] = i;
-                    console.log(s);
                     datatable.push(this.datacol(s, arguments[1]));
                 }
                 return datatable;
@@ -279,7 +279,7 @@
             
 
             ctor: function(pxString) {
-
+                
                 var metadata = {};
                 var data;
 
@@ -350,8 +350,9 @@
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = Px;
         }
-        root._ = require('underscore');
         exports.Px = Px;
+        root._ = require('underscore');
+        nodeEnv = true;
     } else {
         root.Px = Px;
     }
