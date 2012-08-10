@@ -6,7 +6,6 @@
     'use strict';
 
     var root = this;
-    var nodeEnv = false;
 
     var Px = (function () {
 
@@ -352,7 +351,6 @@
         }
         exports.Px = Px;
         root._ = require('underscore');
-        nodeEnv = true;
     } else {
         root.Px = Px;
     }

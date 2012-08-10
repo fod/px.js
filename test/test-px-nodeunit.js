@@ -1,7 +1,6 @@
 GLOBAL._ = require('underscore');
 var Px = require('../lib/px.js'),
-    fs = require('fs'),
-    iconv = require('iconv-lite');
+    fs = require('fs');
 
 var testData = require('./testData.json');
 
@@ -102,7 +101,7 @@ var runTests = function(i) {
                        testData[i].firstLastCodes[varNum][1],
                        'Correct code returned for last value');
 
-         }
+        }
 
         // Px.valCounts
         test.deepEqual(px.valCounts(), testData[i].numVals, 'Correct value counts array'); 
@@ -159,9 +158,6 @@ var runTests = function(i) {
                        'Correct last value on zero-based datacol'); 
             test.equal(maxDataCol[maxIdx], testData[i].firstMidLastMaxData[varNum][2],
                        'Correct last value on maximum-based datacol');
-
-
-            var zmidIdx = Math.floor(zeroDataCol.length / 2);
 
         }
 
