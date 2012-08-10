@@ -148,7 +148,7 @@ var runTests = function(i) {
             test.equal(maxDataCol[0], testData[i].firstMidLastMaxData[varNum][0],
                        'Correct first value on maximum-based datacol');
 
-	    var midIdx = Math.floor(maxDataCol.length / 2);
+            var midIdx = Math.floor(maxDataCol.length / 2);
             test.equal(zeroDataCol[midIdx], testData[i].firstMidLastZeroData[varNum][1],
                        'Correct middle value on zero-based datacol'); 
             test.equal(maxDataCol[midIdx], testData[i].firstMidLastMaxData[varNum][1],
@@ -161,7 +161,7 @@ var runTests = function(i) {
                        'Correct last value on maximum-based datacol');
 
 
-	    var zmidIdx = Math.floor(zeroDataCol.length / 2);
+            var zmidIdx = Math.floor(zeroDataCol.length / 2);
 
         }
 

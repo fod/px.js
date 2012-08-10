@@ -116,7 +116,7 @@
                     return index;
                 }
                 else {
-                    return +this.data[index];
+                    return this.data[index].replace(/"|'/g, '');
                 }
             },
 
