@@ -18,7 +18,7 @@ var runTests = function(i) {
     var px = {};
     var pxfile = 'test/testData/' + testData[i].filename;
     var testPrefix = i;
-    exports[testPrefix + '-Instantiation'] = function(test) {
+    exports[testPrefix + ' - Instantiation'] = function(test) {
         fs.readFile(pxfile,'binary', function(err, data) {
             if (err) { throw err; }
             console.log('\nTesting ' + pxfile + '...');
@@ -34,7 +34,7 @@ var runTests = function(i) {
         });
     };
 
-    exports[testPrefix + '-Metadata'] = function(test) {
+    exports[testPrefix + ' - Metadata'] = function(test) {
         var numVars = px.variables().length;
 
         test.expect(6 + (numVars * 14));
@@ -52,7 +52,6 @@ var runTests = function(i) {
 
         for (var varNum = 0; varNum < numVars; varNum++) {
 
-            //var varName = testData[i].varNames[varNum];
             var varName = px.variable(varNum);
 
             // Px.variable()
@@ -66,10 +65,10 @@ var runTests = function(i) {
             test.equal(px.values(varName).length, testData[i].numVals[varNum], 
                        'Correct number of values (accessed by variable name) for variable ' 
                        + varNum + ' (' + varName + ')');
-            test.equal(px.values(varNum)[0], testData[i].firstLastVals[varNum][0],
+            test.equal(px.values(varNum)[0], testData[i].firstMidLastVals[varNum][0],
                        'Correct first value for variable ' + varNum + ' (' + varName + ')');
             test.equal(px.values(varNum)[px.values(varNum).length - 1],
-                       testData[i].firstLastVals[varNum][1],
+                       testData[i].firstMidLastVals[varNum][2],
                        'Correct last value for variable ' + varNum + ' (' + varName + ')');
 
             // Px.codes()
@@ -79,26 +78,26 @@ var runTests = function(i) {
             test.equal(px.codes(varName).length, testData[i].numVals[varNum], 
                        'Correct number of codes (accessed by variable name) for variable ' 
                        + varNum + ' (' + varName + ')');
-            test.equal(px.codes(varNum)[0], testData[i].firstLastCodes[varNum][0],
+            test.equal(px.codes(varNum)[0], testData[i].firstMidLastCodes[varNum][0],
                        'Correct first code for variable ' + varNum + ' (' + varName + ')');
             test.equal(px.codes(varNum)[px.values(varNum).length - 1],
-                       testData[i].firstLastCodes[varNum][1],
+                       testData[i].firstMidLastCodes[varNum][2],
                        'Correct last code for variable ' + varNum + ' (' + varName + ')');
 
             // Px.value()
             test.equal(px.value(px.codes(varName)[0], varName), 
-                       testData[i].firstLastVals[varNum][0],
+                       testData[i].firstMidLastVals[varNum][0],
                        'Correct value returned for first code');
             test.equal(px.value(px.codes(varName)[px.codes(varName).length-1], varName), 
-                       testData[i].firstLastVals[varNum][1],
+                       testData[i].firstMidLastVals[varNum][2],
                        'Correct value returned for last code');
 
             // Px.code()
             test.equal(px.code(px.values(varName)[0], varName), 
-                       testData[i].firstLastCodes[varNum][0],
+                       testData[i].firstMidLastCodes[varNum][0],
                        'Correct code returned for first value');
             test.equal(px.code(px.values(varName)[px.values(varName).length-1], varName), 
-                       testData[i].firstLastCodes[varNum][1],
+                       testData[i].firstMidLastCodes[varNum][2],
                        'Correct code returned for last value');
 
         }
@@ -109,13 +108,15 @@ var runTests = function(i) {
         test.done();
     };
 
-    exports[testPrefix + '-Data'] = function(test) {
+    exports[testPrefix + ' - Data'] = function(test) {
         var numVars = px.variables().length;
 
-        test.expect(4 + (numVars * 8));
+        test.expect(4 + (numVars * 16));
 
+	// Px.data()
         test.equal(_.size(px.data), testData[i].numData, 'Correct number of data points');
 
+	// Px.datum()
         test.equal(px.datum(arrayOfZeroes(px.variables().length)), 
                    testData[i].firstDatum, 'Correct value for first data point');
 
@@ -127,42 +128,85 @@ var runTests = function(i) {
         test.equal(px.datum(midDatumIdx), testData[i].midDatum,
                    'Correct value for middle data point (' + midDatumIdx + ')');
 
-        for (var varNum = 0; varNum < numVars; varNum++) {
 
+        for (var varNum = 0; varNum < numVars; varNum++) {
+	(function(){
             var zeroArray = arrayOfZeroes(px.variables().length);
             zeroArray.splice(varNum, 1, '*');
-            var zeroDataCol = px.datacol(zeroArray);
+            var zeroDataCol = px.dataCol(zeroArray);
 
             var maxArray = _.map(px.valCounts(), function(d) {return d-1;});
-            maxArray.splice(varNum, 1, '*');
-            var maxDataCol = px.datacol(maxArray);
+	    var maxIdx = maxArray.splice(varNum, 1, '*');
+            var maxDataCol = px.dataCol(maxArray);
+            var midIdx = Math.floor(maxDataCol.length / 2);
+	    var zeroDataDict = px.dataDict(zeroArray);
+	    var maxDataDict = px.dataDict(maxArray);
 
+	    // Px.dataCol()
             test.equal(zeroDataCol.length, testData[i].numVals[varNum],
-                       'Correct number of values return for zero-based datacol');
+                       'Correct number of values returned for zero-based dataCol');
             test.equal(maxDataCol.length, testData[i].numVals[varNum],
-                       'Correct number of values return for maximum-based datacol');
+                       'Correct number of values returned for maximum-based dataCol');
 
             test.equal(zeroDataCol[0], testData[i].firstMidLastZeroData[varNum][0],
-                       'Correct first value on zero-based datacol'); 
+                       'Correct first value on zero-based dataCol'); 
             test.equal(maxDataCol[0], testData[i].firstMidLastMaxData[varNum][0],
-                       'Correct first value on maximum-based datacol');
+                       'Correct first value on maximum-based dataCol');
 
-            var midIdx = Math.floor(maxDataCol.length / 2);
             test.equal(zeroDataCol[midIdx], testData[i].firstMidLastZeroData[varNum][1],
-                       'Correct middle value on zero-based datacol'); 
+                       'Correct middle value on zero-based dataCol'); 
             test.equal(maxDataCol[midIdx], testData[i].firstMidLastMaxData[varNum][1],
-                       'Correct middle value on maximum-based datacol'); 
+                       'Correct middle value on maximum-based dataCol'); 
 
-            var maxIdx = maxArray[varNum];
             test.equal(zeroDataCol[maxIdx], testData[i].firstMidLastZeroData[varNum][2],
-                       'Correct last value on zero-based datacol'); 
+                       'Correct last value on zero-based dataCol'); 
             test.equal(maxDataCol[maxIdx], testData[i].firstMidLastMaxData[varNum][2],
-                       'Correct last value on maximum-based datacol');
+                       'Correct last value on maximum-based dataCol');
 
+	    // Px.dataDict()
+	    test.equal(_.size(zeroDataDict), testData[i].numVals[varNum],
+                       'Correct number of kv pairs returned for zero-based dataDict');
+	    test.equal(_.size(maxDataDict), testData[i].numVals[varNum],
+                       'Correct number of kv pairs returned for maximum-based dataDict');
+
+            test.equal(zeroDataDict[testData[i].firstMidLastCodes[varNum][0]], 
+		       testData[i].firstMidLastZeroData[varNum][0],
+                       'Correct value from first code on zero-based dataDict'); 
+            test.equal(maxDataDict[testData[i].firstMidLastCodes[varNum][2]], 
+		       testData[i].firstMidLastMaxData[varNum][2],
+                       'Correct value from first code on maximum-based dataDict');
+
+            test.equal(zeroDataDict[testData[i].firstMidLastCodes[varNum][1]], 
+		       testData[i].firstMidLastZeroData[varNum][1],
+                       'Correct value from middle code on zero-based dataDict'); 
+            test.equal(maxDataDict[testData[i].firstMidLastCodes[varNum][2]], 
+		       testData[i].firstMidLastMaxData[varNum][2],
+                       'Correct value from middle code on maximum-based dataDict'); 
+
+            test.equal(zeroDataDict[testData[i].firstMidLastCodes[varNum][2]], 
+		       testData[i].firstMidLastZeroData[varNum][2],
+                       'Correct value from last code on zero-based dataDict'); 
+            test.equal(maxDataDict[testData[i].firstMidLastCodes[varNum][2]], 
+		       testData[i].firstMidLastMaxData[varNum][2],
+                       'Correct value from last code on maximum-based dataDict');
+}());
         }
+
 
         test.done();
     };
+
+    // exports[testPrefix + ' - Extended Data Functions'] = function(test) {
+    //     test.expect(1);
+    // 	var numVars = px.variables().length;
+	
+    // 	for (var varNum = 0; varNum < numVars; varNum++) {
+	    
+	    
+    // 	}
+	
+    //     test.done();
+    // };
 
 };
 
