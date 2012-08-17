@@ -1,9 +1,22 @@
 px.js - PC-Axis file parsing in JavaScript
 ===
 
-### Dependencies
+## Description
+
+## Dependencies
 
 [underscore.js](http://underscorejs.org)
+
+## Getting Started
+
+### In the browser
+
+```html
+<script type="text/javascript" src="../../js-libs/underscore/underscore.js"></script>
+<script type="text/javascript" src="../../lib/px.js"></script>
+```
+
+
 
 
 ### Synopsis
@@ -33,7 +46,16 @@ var codes = px.codes(variable);
 var datapoint = px.datum([0,0,0,0]);
 
 // get a column of data
-var column = px.datacol(['*',0,0,0]);    
+var column = px.dataCol(['*',0,0,0]);
+
+// get an associative array of {value name: data}
+var column = px.dataDict(['*',0'0'0]);
+
+// 
+var entries = px.entries();
+
+//
+px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 ```
 
 ## Getting Started

@@ -145,10 +145,6 @@ var runTests = function(i) {
                    'Correct value for middle data point (' + midDatumIdx + ')');
 
 
-        // Px.entries()
-        test.deepEqual(entries[0], firstEntry, 'Correct first entry for Px.entries()');
-        test.deepEqual(entries[testData[i].numData - 1], lastEntry, 'Correct first entry for Px.entries()');
-
 
         (function(){
             for (var varNum = 0; varNum < numVars; varNum++) {
@@ -184,6 +180,7 @@ var runTests = function(i) {
                 test.equal(maxDataCol[maxIdx], testData[i].firstMidLastMaxData[varNum][2],
                            'Correct last value on maximum-based dataCol');
 
+
                 // Px.dataDict()
                 test.equal(_.size(zeroDataDict), testData[i].numVals[varNum],
                            'Correct number of kv pairs returned for zero-based dataDict');
@@ -211,8 +208,14 @@ var runTests = function(i) {
                            testData[i].firstMidLastMaxData[varNum][2],
                            'Correct value from last code on maximum-based dataDict');
 
+
             }
         }());
+
+
+	// Px.entries()
+        test.deepEqual(entries[0], firstEntry, 'Correct first entry for Px.entries()');
+        test.deepEqual(entries[testData[i].numData - 1], lastEntry, 'Correct first entry for Px.entries()');
 
         test.done();
     };
