@@ -35,7 +35,7 @@ Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
-<a href="#remoteFile" />
+<a href="#remoteFile" class="anchor" />
 __For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
