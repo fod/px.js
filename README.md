@@ -146,8 +146,7 @@ A new PC-Axis object is constructed by passing a string containing a PC-Axis fil
 
 ### Methods
 
-
-## Examples
+## Extending Px.js
 
 
 ## Contributing
