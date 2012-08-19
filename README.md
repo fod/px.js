@@ -35,7 +35,7 @@ Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
-<a name="remoteFile" id="remoteFile" href="#remoteFile" class="anchor" />
+<a name="remoteFile" />
 __For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
@@ -52,7 +52,7 @@ xhr.open('GET', 'path/to/remote/PC-Axis/file');
 xhr.send();
 ```
 
-<a name="localFile" id="localFile" href="#localFile" class="anchor" />
+<a name="localFile" />
 __For local PC-Axis files:__
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML:
@@ -147,6 +147,7 @@ The Px constructor parses the PC-Axis file's data and metadata into two attribut
 
 ### Attributes
 
+A 
 __metadata__
 
 __data__
