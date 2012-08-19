@@ -57,9 +57,10 @@ Use the FileReader API to pass the file to the Px constructor. For example, assu
 construct a new Px object in a callback triggered when a new file is selected:
 
 ```javascript
+
 	document.getElementById('pxfile').onchange = handlePxfile;
 
-    var px = {};
+	var px = {};
     function handlePxfile() {
     	var reader = new FileReader();
 
@@ -73,7 +74,7 @@ construct a new Px object in a callback triggered when a new file is selected:
 ### On the server
 Install the module with: `npm install pxjs`
 
-thein, in your code:
+then, in your code:
 
 ```javascript
 var Px = require('pxjs');
