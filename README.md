@@ -52,7 +52,7 @@ xhr.open('GET', 'path/to/remote/PC-Axis/file');
 xhr.send();
 ```
 
-
+<a name="localFile" id="localFile" href="#localFile" class="anchor" />
 __For local PC-Axis files:__
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML:
@@ -99,32 +99,32 @@ fs.readFile('path/to/PC-Axis/file', 'utf8', function(err, data) {
 
 ```javascript
 // construction
-var px = new Px(pxfile);
+var px = new Px(pxString);
 
-// get values for keyword
+// return values for passed keyword
 var title = px.keyword('TITLE');
 
-// get array of keywords
+// return array containing all keywords
 var keys = px.keywords();
 
-// get array of variables (STUBs & HEADINGs)
+// return array containing all variables (STUBs & HEADINGs)
 var vars = px.variables();
 
-// get array of values for passed variable
+// return array of values for passed variable
 // (can take array index or variable name)
 var values = px.values(variable);
 
-// get array of value CODEs for passed variable
+// return array of value codes for passed variable
 // (can take array index or variable name)
 var codes = px.codes(variable);
     
-// get the data value for a passed array of variable values
+// return the data value for a passed array of variable values
 var datapoint = px.datum([0,0,0,0]);
 
-// get a column of data
+// return a column of data
 var column = px.dataCol(['*',0,0,0]);
 
-// get an associative array of {valueName: data}
+// return an associative array of data in the form: {valueName: data}
 var column = px.dataDict(['*',0'0'0]);
 
 // Return an array of data objects, one for each datum
@@ -136,13 +136,18 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 
 ### Construction
 
-A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a FileReader.readAsText() or an [XMLHttpRequest](#remoteFile) call:
+A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (resultText) call, as both of these return a string containing the target file's contents.
 
 ```javascript
-
+	var pxString; // String containing PC-Axis file's contents)
+	var px = new Px(pxString);
 ```
 
+The Px constructor parses the PC-Axis file's data and metadata into two attributes, data and metadata, and returns an object equipped with a number of methods to access and manipulate its contents.
+
 ### Attributes
+
+
 
 ### Methods
 
