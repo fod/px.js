@@ -23,56 +23,57 @@ Px.js is primarily intended for use in a web browser but it can also be used as 
 Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 ```html
-	<script type="text/javascript" src="path/to/underscore.js"></script>
-	<script type="text/javascript" src="path/to/px.js"></script>
+<script type="text/javascript" src="path/to/underscore.js"></script>
+<script type="text/javascript" src="path/to/px.js"></script>
 ```
 
 then in your JavaScript:
 
-#### For remote PC-Axis files
+_For remote PC-Axis files_
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
 
 
 ```javascript
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4 && xhr.status === 200) {
-			var px = new Px(xhr.responseText);
-		}
-	};
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+	if (xhr.readyState === 4 && xhr.status === 200) {
+		var px = new Px(xhr.responseText);
+	}
+};
 
-	xhr.open('GET', 'path/to/remote/PC-Axis/file');
-	xhr.send();
+xhr.open('GET', 'path/to/remote/PC-Axis/file');
+xhr.send();
 ```
 
-#### For local PC-Axis files
+_For local PC-Axis files_
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML:
 
 ```html
-	<input type="file" id="pxfile" />
+<input type="file" id="pxfile" />
 ```
 
 construct a new Px object in a callback triggered when a new file is selected:
 
 ```javascript
+document.getElementById('pxfile').onchange = handlePxfile;
 
-	document.getElementById('pxfile').onchange = handlePxfile;
+var px = {};
+function handlePxfile() {
+	var reader = new FileReader();
 
-	var px = {};
-    function handlePxfile() {
-    	var reader = new FileReader();
-
-    	reader.onload = function() {
-			return px = new Px(reader.result);
-		};
-		reader.readAsText(this.files[0]);
-    }
+    reader.onload = function() {
+		return px = new Px(reader.result);
+	};
+	reader.readAsText(this.files[0]);
+}
 ```
 
 ### On the server
-Install the module with: `npm install pxjs`
+Install the module with: 
+
+`npm install pxjs`
 
 then, in your code:
 
