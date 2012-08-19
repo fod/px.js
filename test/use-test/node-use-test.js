@@ -7,7 +7,6 @@ fs.readFile(pxfile, 'utf8', function(err, data) {
     if (err) { throw err; }
     console.log('\Loading ' + pxfile + '...');
     px = new Px(data);
-console.log(px.variables());
 });
 
 

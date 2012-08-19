@@ -1,13 +1,14 @@
-Px.js - PC-Axis file parsing in JavaScript
+Px.js 
 ===
+## PC-Axis file parsing in JavaScript
 
 Px.js is a JavaScript for extracting data (and metadata) from PC-Axis files.
 
 PC-Axis is a file format used for dissemination of statistical information. The format is used by a number of national statistical organisations to disseminate official statistics.
 
-### Why?
+### Why parse PC-Axis files in the browser?
 
-
+Ordinarily, to display or use data held in a PC-Axis file in a web browser, it is necessary to either parse the PC-Axis file on the server and extract information based on a user's request, or to preprocess the data and store extracted subsets on the server. 
 
 ## Dependencies
 
@@ -20,7 +21,7 @@ Px.js is primarily intended for use in a web browser but it can also be used as 
 
 ### In the browser
 
-Download the [production version][min] or the [development version][max].
+Download the minified [production version][min] or the [development version][max].
 
 [min]: https://raw.github.com/fod/px.js/master/dist/px.min.js
 [max]: https://raw.github.com/fod/px.js/master/dist/px.js
@@ -34,7 +35,7 @@ Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
-__For remote PC-Axis files__
+__For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
 
@@ -51,7 +52,8 @@ xhr.open('GET', 'path/to/remote/PC-Axis/file');
 xhr.send();
 ```
 
-__For local PC-Axis files__
+
+__For local PC-Axis files:__
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML:
 
@@ -76,7 +78,7 @@ function handlePxfile() {
 ```
 
 ### On the server
-Install the module with: 
+Install the module with npm: 
 
 `npm install pxjs`
 
@@ -97,7 +99,7 @@ fs.readFile('path/to/PC-Axis/file', 'utf8', function(err, data) {
 
 ```javascript
 // construction
-var px = new Px();
+var px = new Px(pxfile);
 
 // get values for keyword
 var title = px.keyword('TITLE');
@@ -109,7 +111,7 @@ var keys = px.keywords();
 var vars = px.variables();
 
 // get array of values for passed variable
-// (can take array index, regular expression, or variable name)
+// (can take array index or variable name)
 var values = px.values(variable);
 
 // get array of value CODEs for passed variable
@@ -122,13 +124,13 @@ var datapoint = px.datum([0,0,0,0]);
 // get a column of data
 var column = px.dataCol(['*',0,0,0]);
 
-// get an associative array of {value name: data}
+// get an associative array of {valueName: data}
 var column = px.dataDict(['*',0'0'0]);
 
-// 
+// Return an array of data objects, one for each datum
 var entries = px.entries();
 
-//
+// Remove values and associated data from Px object
 px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 ```
 
