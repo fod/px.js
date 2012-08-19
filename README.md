@@ -35,7 +35,7 @@ Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
-<a id='remoteFile'></a>
+<a id="remoteFile"></a>
 __For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
@@ -140,6 +140,7 @@ A new PC-Axis object is constructed by passing a string containing a PC-Axis fil
 
 ```javascript
 
+```
 
 ### Attributes
 
