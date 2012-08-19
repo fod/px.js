@@ -125,7 +125,7 @@ var datapoint = px.datum([0,0,0,0]);
 var column = px.dataCol(['*',0,0,0]);
 
 // return an associative array of data in the form: {valueName: data}
-var column = px.dataDict(['*',0'0'0]);
+var column = px.dataDict(['*',0,0,0]);
 
 // Return an array of data objects, one for each datum
 var entries = px.entries();
@@ -139,7 +139,7 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (resultText) call, as both of these return a string containing the target file's contents.
 
 ```javascript
-	var pxString; // String containing PC-Axis file's contents)
+	var pxString; // String containing PC-Axis file's contents
 	var px = new Px(pxString);
 ```
 
@@ -147,9 +147,33 @@ The Px constructor parses the PC-Axis file's data and metadata into two attribut
 
 ### Attributes
 
+__metadata__
 
+__data__
 
 ### Methods
+
+__keyword__
+
+__keywords__
+
+__variables__
+
+__values__
+
+__codes__
+
+__datum__
+
+__dataCol__
+
+__dataDict__
+
+__entries__
+
+__truncate__
+
+__subset__
 
 ## Extending Px.js
 
