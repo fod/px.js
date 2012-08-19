@@ -147,11 +147,18 @@ The Px constructor parses the PC-Axis file's data and metadata into two attribut
 
 ### Attributes
 
-A 
+Px attributes are not intended to be accessed directly. Often it is easier to access data and metadata via the object's [methods](#methods).
+
 __metadata__
+
+The metadata attribute is an object containing all of the PC-Axis file's metadata. Each of the metadata object's keys is a metadata keyword from the original PC-Axis file, each of its values is an object. Where a keyword in the original PC-Axis file has a single string value (meaning that the value applies to the entire dataset - e.g. the 'TITLE' keyword), then that keyword's value object contains a single key, 'TABLE', the value of which is the string to which that keyword pointed to in the original PC-Axis file.
+
 
 __data__
 
+
+
+<a name="methods" />
 ### Methods
 
 __keyword__
