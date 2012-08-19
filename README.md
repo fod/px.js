@@ -35,10 +35,10 @@ Include [underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
+<a id='remoteFile'></a>
 __For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
-
 
 ```javascript
 var xhr = new XMLHttpRequest();
@@ -133,6 +133,18 @@ var entries = px.entries();
 // Remove values and associated data from Px object
 px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 ```
+
+### Construction
+
+A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a FileReader.readAsText() or an [XMLHttpRequest](#remoteFile) call:
+
+```javascript
+
+
+### Attributes
+
+### Methods
+
 
 ## Examples
 
