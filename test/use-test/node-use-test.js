@@ -1,4 +1,3 @@
-//_ = require('underscore');
 var Px = require('../../lib/px.js'),
     fs = require('fs');
 
