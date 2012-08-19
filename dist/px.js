@@ -1,4 +1,4 @@
-/*! px - v0.1.0 - 2012-08-17
+/*! px - v0.1.0 - 2012-08-19
 * https://github.com/fod/px.js
 * Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
 
@@ -347,12 +347,13 @@
 
     }());
 
+    var _ = root._;
     if (typeof exports !== 'undefined') {
         if (typeof module !== 'undefined' && module.exports) {
             exports = module.exports = Px;
         }
         exports.Px = Px;
-        root._ = require('underscore');
+        _ = require('underscore');
     } else {
         root.Px = Px;
     }

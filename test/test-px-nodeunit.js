@@ -217,6 +217,9 @@ var runTests = function(i) {
         test.deepEqual(entries[0], firstEntry, 'Correct first entry for Px.entries()');
         test.deepEqual(entries[testData[i].numData - 1], lastEntry, 'Correct first entry for Px.entries()');
 
+
+	// Px.truncate()
+	// truncate tests must be run last as 
         test.done();
     };
 
