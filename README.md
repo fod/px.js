@@ -153,15 +153,35 @@ __metadata__
 
 The metadata attribute is an object containing all of the PC-Axis file's metadata. Each of the metadata object's keys is a metadata keyword from the original PC-Axis file, each of its values is an object. Where a keyword in the original PC-Axis file has a single string value (meaning that the value applies to the entire dataset - e.g. the 'TITLE' keyword), then that keyword's value object contains a single key, 'TABLE', the value of which is the string to which that keyword pointed to in the original PC-Axis file.
 
+```javascript
+// Return metadata object
+var meta = px.metadata;
+
+// Return dataset's TITLE value as string
+var title = px.metadata.TITLE.TABLE;
+
+// Return object with variables as keys and arrays of codes as values
+var codes = px.metadata.CODES;
+
+// Return array of codes for Region variable
+var regCodes = px.metadata.CODES.Region;
+```
 
 __data__
 
+The data attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored identically in the data object.
 
 
 <a name="methods" />
 ### Methods
 
 __keyword__
+
+```javascript
+var 
+```
+
+The keyword method returns the value of the passed keyword. If the keyword holds a value which refers to the entire table (such as the 'TITLE' keyword), then that value is returned as a string. If the keyword passed to the method has different values for each variable (for example, the 'VALUES' and 'CODES' keywords will have a different list of values for each variable), then a reference to the object holding the entire set of values is returned by the method.
 
 __keywords__
 
