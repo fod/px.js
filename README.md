@@ -223,27 +223,53 @@ var variables = px.variables();
 
 __variable(String or Array-Index)__
 
-When passed an array index the variable method returns the variable name at that index in an array composed of [ STUB variables, HEADING variables ] - i.e. the array returned by the variables method.
+When passed an array index the variable method returns the variable name at that index in an array composed of [STUB variables, HEADING variables] - i.e. the array returned by the variables method.
 
 When passed a string (containing a variable name) this method returns the index in the variables array at which the named variable occurs.
 
 ```javascript
-// Return the name of the variable at position 0
+// Return the name of the variable at position 0 in the variables array
 var varName = px.variable(0);
 
 // Return the position (array index) of the 'Region' variable in the variables array
 var idx = px.variable('Region');
 ```
 
-__values(String)__
+__values(String or Array-Index)__
 
-__codes(String)__
+When passed the name of a variable or the index of a variable in the variables array the values method returns an array containing the names of all possible values for that variable.
+
+The order of the values in the array returned by this method matches the order in the original file.
+
+```javascript
+// Return an array of all possible values (by name) for the variable at position 0 in the variables array
+var vals = px.values(0);
+
+// Return an array of possible values (by name) for the 'Region' variable
+var vals = px.values('Region');
+```
+
+__codes(String or Array-Index)__
+
+When passed the name of a variable or the index of a variable in the variables array the codes method returns an array containing the codes for all possible values for that variable.
+
+The order of the value codes in the array returned by this method matches the order in the original file.
+
+```javascript
+// Return an array of all possible values (by code) for the variable at position 0 in the variables array
+var codes = px.codes(0);
+
+// Return an array of possible values (by code) for the 'Region' variable
+var codess = px.codes('Region');
+```
 
 __datum(Array-of-Array-Indices)__
 
-__dataCol(Array-ofArray-Indices)__
 
-__dataDict(Array-ofArray-Indices)__
+
+__dataCol(Array-of-Array-Indices)__
+
+__dataDict(Array-of-Array-Indices)__
 
 __entries()__
 
@@ -256,6 +282,7 @@ __subset(Array-of-Arrays-of-Array-Indices)__
 
 ## Contributing
 
+## Bugs
 
 ## Release History
 
