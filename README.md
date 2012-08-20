@@ -208,7 +208,7 @@ var metaKeys = px.keywords();
 
 __title()__
 
-The title method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to ```metadata.TABLE.TITLE``` 
+The title method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to ```metadata.TABLE.TITLE```.
 
 ```javascript
 // Return TITLE of dataset
@@ -240,6 +240,12 @@ var idx = px.variable('Region');
 
 __valCounts()__
 
+Returns an array of value counts. Each element in the array is the number of possible values in the current PC-Axis dataset for the variable with the same index (in the variables array) as the element.
+
+```javascript
+// Return array of value counts
+var counts = px.valCounts();
+```
 
 __values(String or Array-Index)__
 
@@ -269,22 +275,34 @@ var codes = px.codes(0);
 var codess = px.codes('Region');
 ```
 
-__value(String)__
+__value(String, String)__
 
+Returns the value name corresponding to the value code and variable name passed.
 
-__code(String)__
+```javascript
+// Return the value for the 'Region' variable, for which the code is '01'
+var code = value('01', 'Region');
+```
 
+__code(String, String)__
+
+Returns the code corresponding to the value name and variable name passed.
+
+```javascript // Return the code for the 'Region' variable named 'State'
+var code = value('State', 'Region');
+```
 
 __datum(Array-of-Array-Indices)__
 
-The datum method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by thoise indices.
+The ```datum``` method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by thoise indices.
 
-For instance, if a PC-Axis file contains three variables, and each variable has two possible values, then passing
+For instance, if a PC-Axis file contains three variables, and each variable has two possible values, then passing ```[0,0,0]``` 
 
 ```javascript
 var dataValue = px.datum([0,0,0]);
-
+```
 Each 
+
 __dataCol(Array-of-Array-Indices)__
 
 __dataDict(Array-of-Array-Indices)__
