@@ -145,8 +145,8 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (resultText) call, as both of these return a string containing the target file's contents.
 
 ```javascript
-	var pxString; // String containing PC-Axis file's contents
-	var px = new Px(pxString);
+var pxString; // String containing PC-Axis file's contents
+var px = new Px(pxString);
 ```
 
 The Px constructor parses the PC-Axis file's data and metadata into two attributes, data and metadata, and returns an object equipped with a number of methods to access and manipulate its contents.
@@ -288,7 +288,8 @@ __code(String, String)__
 
 Returns the code corresponding to the value name and variable name passed.
 
-```javascript // Return the code for the 'Region' variable named 'State'
+```javascript
+// Return the code for the 'Region' variable named 'State'
 var code = value('State', 'Region');
 ```
 
