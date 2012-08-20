@@ -2,7 +2,7 @@ Px.js
 ===
 ## PC-Axis file parsing in JavaScript
 
-Px.js is a JavaScript library for extracting and manipulating data stored in PC-Axis files. It is intended as a generic solution which can handle all well-formed Pc-Axis files. As such it behaves as a container for PC-Axis data and associated metadata with basic functionality for data access and manipulation without 
+Px.js is a JavaScript library for extracting and manipulating data stored in PC-Axis files. It is intended as a generic solution which can handle any well-formed PC-Axis file.
 
 Px.js is primarily intended for use in a web browser but it can also be used as a Node.js module.
 
@@ -12,12 +12,6 @@ PC-Axis is a file format used for dissemination of statistical information. The 
 statistical organisations to disseminate official statistics. For general information on PC-Axis refer to the
 [PC-Axis web site](http://www.scb.se/Pages/StandardNoLeftMeny____314045.aspx) and for information on the file format specifically, see the
 [PC-Axis file format specification](http://www.scb.se/Pages/List____314011.aspx).
-
-### Why parse PC-Axis files in the browser?
-
-Without a client-side PC-Axis parsing solution, to display or use data held in a PC-Axis file in a web browser it is necessary to either parse the PC-Axis file on the server and extract information based on the user's request, or to preprocess the data and store extracted subsets on the server.
-
-Both involve  
 
 ## Dependencies
 
@@ -104,11 +98,11 @@ fs.readFile('path/to/PC-Axis/file', 'utf8', function(err, data) {
 ### Synopsis
 
 ```javascript
-// construction
+// Constructor
 var px = new Px(pxString);
 
 // return values for passed keyword
-var title = px.keyword('TITLE');
+var keyword = px.keyword('KEYWORD');
 
 // return array containing all keywords
 var keys = px.keywords();
@@ -159,7 +153,7 @@ The Px constructor parses the PC-Axis file's data and metadata into two attribut
 
 ### Attributes
 
-Px attributes are not intended to be accessed directly. Often it is easier to access data and metadata via the object's [methods](#methods).
+Px attributes are not intended to be accessed directly. Data and metadata are generally accessed more easily and more consistently via the object's [methods](#methods).
 
 __metadata__
 
