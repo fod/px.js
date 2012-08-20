@@ -2,22 +2,28 @@ Px.js
 ===
 ## PC-Axis file parsing in JavaScript
 
-Px.js is a JavaScript for extracting data (and metadata) from PC-Axis files.
-
-PC-Axis is a file format used for dissemination of statistical information. The format is used by a number of national statistical organisations to disseminate official statistics.
-
-### Why parse PC-Axis files in the browser?
-
-Ordinarily, to display or use data held in a PC-Axis file in a web browser, it is necessary to either parse the PC-Axis file on the server and extract information based on a user's request, or to preprocess the data and store extracted subsets on the server. 
-
-## Dependencies
-
-[underscore.js](http://underscorejs.org)
-
-## Getting Started
+Px.js is a JavaScript library for extracting and manipulating data stored in PC-Axis files. It is intended as a generic solution which can handle all well-formed Pc-Axis files. As such it behaves as a container for PC-Axis data and associated metadata with basic functionality for data access and manipulation without 
 
 Px.js is primarily intended for use in a web browser but it can also be used as a Node.js module.
 
+### What is PC-Axis?
+
+PC-Axis is a file format used for dissemination of statistical information. The format is used by a large number of national
+statistical organisations to disseminate official statistics. For general information on PC-Axis refer to the
+[PC-Axis web site](http://www.scb.se/Pages/StandardNoLeftMeny____314045.aspx) and for information on the file format specifically, see the
+[PC-Axis file format specification](http://www.scb.se/Pages/List____314011.aspx).
+
+### Why parse PC-Axis files in the browser?
+
+Without a client-side PC-Axis parsing solution, to display or use data held in a PC-Axis file in a web browser it is necessary to either parse the PC-Axis file on the server and extract information based on the user's request, or to preprocess the data and store extracted subsets on the server.
+
+Both involve  
+
+## Dependencies
+
+Px.js is dependent on the [Underscore](http://underscorejs.org) JavaScript utility library.
+
+## Getting Started
 
 ### In the browser
 
@@ -110,6 +116,12 @@ var keys = px.keywords();
 // return array containing all variables (STUBs & HEADINGs)
 var vars = px.variables();
 
+// return variable at index 0 in variables array
+var variable = px.variable(0);
+
+// return index of Region variable in variables array 
+var variable = px.variable('Region');
+
 // return array of values for passed variable
 // (can take array index or variable name)
 var values = px.values(variable);
@@ -169,39 +181,74 @@ var regCodes = px.metadata.CODES.Region;
 
 __data__
 
-The data attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored identically in the data object.
+The data attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored unchanged in the data object.
 
+```javascript
+// Return array of data
+var data = px.data;
+```
 
 <a name="methods" />
 ### Methods
 
-__keyword__
-
-```javascript
-var 
-```
+__keyword(String)__
 
 The keyword method returns the value of the passed keyword. If the keyword holds a value which refers to the entire table (such as the 'TITLE' keyword), then that value is returned as a string. If the keyword passed to the method has different values for each variable (for example, the 'VALUES' and 'CODES' keywords will have a different list of values for each variable), then a reference to the object holding the entire set of values is returned by the method.
 
-__keywords__
+```javascript
+// Return the value of the title keyword as a string
+var title = px.keyword('TITLE');
 
-__variables__
+// Return object with variables as keys and arrays of codes as values var codes = px.keyword('CODES');
+```
 
-__values__
+__keywords()__
 
-__codes__
+The keywords method returns an array containing all of the metadata keywords associated with the PC-Axis dataset represented by the object.
 
-__datum__
+```javascript
+// Return an array of keywords
+var metaKeys = px.keywords();
+```
 
-__dataCol__
+__variables()__
 
-__dataDict__
+The variables method returns an array containing the names of all of the variables present in the current PC-Axis file. The variables in the returned array are ordered as they are in the PC-Axis file; first the 'STUB' variables, followed by the 'HEADING' variables.
 
-__entries__
+```javascript
+// Return an array of variable names
+var variables = px.variables();
+```
 
-__truncate__
+__variable(String or Array-Index)__
 
-__subset__
+When passed an array index the variable method returns the variable name at that index in an array composed of [ STUB variables, HEADING variables ] - i.e. the array returned by the variables method.
+
+When passed a string (containing a variable name) this method returns the index in the variables array at which the named variable occurs.
+
+```javascript
+// Return the name of the variable at position 0
+var varName = px.variables(0);
+
+// Return the position (array index) of the 'Region' variable in the variables array
+var idx = px.variables('Region');
+```
+
+__values(String)__
+
+__codes(String)__
+
+__datum(Array-of-Array-Indices)__
+
+__dataCol(Array-ofArray-Indices)__
+
+__dataDict(Array-ofArray-Indices)__
+
+__entries()__
+
+__truncate(Array-of-Arrays-of-Array-Indices)__
+
+__subset(Array-of-Arrays-of-Array-Indices)__
 
 ## Extending Px.js
 
