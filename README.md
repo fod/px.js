@@ -229,10 +229,10 @@ When passed a string (containing a variable name) this method returns the index 
 
 ```javascript
 // Return the name of the variable at position 0
-var varName = px.variables(0);
+var varName = px.variable(0);
 
 // Return the position (array index) of the 'Region' variable in the variables array
-var idx = px.variables('Region');
+var idx = px.variable('Region');
 ```
 
 __values(String)__
