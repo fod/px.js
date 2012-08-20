@@ -55,13 +55,13 @@ xhr.send();
 <a name="localFile" />
 __For local PC-Axis files:__
 
-Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML:
+Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML...
 
 ```html
 <input type="file" id="pxfile" />
 ```
 
-construct a new Px object in a callback triggered when a new file is selected:
+...construct a new Px object in a callback triggered when a new file is selected:
 
 ```javascript
 document.getElementById('pxfile').onchange = handlePxfile;
@@ -206,6 +206,15 @@ The keywords method returns an array containing all of the metadata keywords ass
 var metaKeys = px.keywords();
 ```
 
+__title()__
+
+The title method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to ```metadata.TABLE.TITLE``` 
+
+```javascript
+// Return TITLE of dataset
+var title = px.title();
+```
+
 __variables()__
 
 The variables method returns an array containing the names of all of the variables present in the current PC-Axis file. The variables in the returned array are ordered as they are in the PC-Axis file; first the 'STUB' variables, followed by the 'HEADING' variables.
@@ -228,6 +237,9 @@ var varName = px.variable(0);
 // Return the position (array index) of the 'Region' variable in the variables array
 var idx = px.variable('Region');
 ```
+
+__valCounts()__
+
 
 __values(String or Array-Index)__
 
@@ -257,10 +269,22 @@ var codes = px.codes(0);
 var codess = px.codes('Region');
 ```
 
+__value(String)__
+
+
+__code(String)__
+
+
 __datum(Array-of-Array-Indices)__
 
+The datum method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by thoise indices.
 
+For instance, if a PC-Axis file contains three variables, and each variable has two possible values, then passing
 
+```javascript
+var dataValue = px.datum([0,0,0]);
+
+Each 
 __dataCol(Array-of-Array-Indices)__
 
 __dataDict(Array-of-Array-Indices)__
