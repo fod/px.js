@@ -1,4 +1,4 @@
-/*! px - v0.1.0 - 2012-08-19
+/*! px - v0.1.0 - 2012-08-21
 * https://github.com/fod/px.js
 * Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
 
@@ -102,6 +102,7 @@
 
             datum: function(s) {
                 // TODO: check for correct array length
+		// TODO: check that each index is in range
                 var counts = this.valCounts();
 
                 var index = 0;
@@ -221,6 +222,7 @@
             // remove values and associated data from this object
             truncate: function(s) {
                 //TODO: validate array length
+		//TODO: return unwanted subset as new Px object
 
                 var counts = this.valCounts(),
                 multipliers = [];

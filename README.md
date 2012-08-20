@@ -26,7 +26,7 @@ Download the minified [production version][min] or the [development version][max
 [min]: https://raw.github.com/fod/px.js/master/dist/px.min.js
 [max]: https://raw.github.com/fod/px.js/master/dist/px.js
 
-Include [underscore](http://underscorejs.org) and Px.js in your HTML:
+Include [Underscore](http://underscorejs.org) and Px.js in your HTML:
 
 ```html
 <script type="text/javascript" src="path/to/underscore.js"></script>
@@ -295,14 +295,23 @@ var code = value('State', 'Region');
 
 __datum(Array-of-Array-Indices)__
 
-The ```datum``` method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by thoise indices.
+The ```datum``` method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by those indices.
 
-For instance, if a PC-Axis file contains three variables, and each variable has two possible values, then passing ```[0,0,0]``` 
+For example, consider a dataset containing two variables, each of which has two possible values:
 
 ```javascript
-var dataValue = px.datum([0,0,0]);
+// Two variables
+px.variables();    // ['Sex', 'Year']
+
+// Each variable has two possible values
+px.values('Sex');  // ['Male', 'Female']
+px.values('Year'); // ['2011', '2012']
+
+px.datum([0,0]);  // Data value for males in 2011
+px.datum([0,1]);  // Data value for males in 2012
+px.datum([1,0]);  // Data value for females in 2011
+px.datum([1,1]);  // Data value for females in 2012
 ```
-Each 
 
 __dataCol(Array-of-Array-Indices)__
 
