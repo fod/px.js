@@ -199,7 +199,8 @@ The keyword method returns the value of the passed keyword. If the keyword holds
 // Return the value of the title keyword as a string
 var title = px.keyword('TITLE');
 
-// Return object with variables as keys and arrays of codes as values var codes = px.keyword('CODES');
+// Return object with variables as keys and arrays of codes as values
+var codes = px.keyword('CODES');
 ```
 
 __keywords()__
