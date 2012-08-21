@@ -319,6 +319,7 @@ The ```dataCol``` method is similar to the datum method except that one of the e
 
 For example, consider a dataset containing two variables, each of which has two possible values:
 
+```javascript
 // Two variables 
 px.variables();    // ['Sex', 'Year'] 
 
