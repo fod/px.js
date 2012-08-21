@@ -321,16 +321,16 @@ For example, consider a dataset containing two variables, each of which has two 
 
 ```javascript
 // Two variables 
-px.variables();    // ['Sex', 'Year'] 
+px.variables();       // ['Sex', 'Year'] 
 
 // Each variable has two possible values 
-px.values('Sex');  // ['Male', 'Female'] 
-px.values('Year'); // ['2011', '2012'] 
+px.values('Sex');     // ['Male', 'Female'] 
+px.values('Year');    // ['2011', '2012'] 
 
-px.dataCol(['*',0]);   // [Data value for males in 2011, Data value for females in 2011] 
-px.datCol(['*',1]);   // [Data value for males in 2012, Data value for females in 2012]
-px.datCol([0,'*']);   // [Data value for males in 2011, Data value for males in 2012]
-px.datCol([1,'*']);   // [Data value for females in 2011, Data value for females in 2012]
+px.dataCol(['*',0]);  // [Data value for males in 2011, Data value for females in 2011] 
+px.dataCol(['*',1]);  // [Data value for males in 2012, Data value for females in 2012]
+px.dataCol([0,'*']);  // [Data value for males in 2011, Data value for males in 2012]
+px.dataCol([1,'*']);  // [Data value for females in 2011, Data value for females in 2012]
 ```
 
 __dataDict(Array-of-Array-Indices)__
