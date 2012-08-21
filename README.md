@@ -295,7 +295,7 @@ var code = value('State', 'Region');
 
 __datum(Array-of-Array-Indices)__
 
-The ```datum``` method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by those indices.
+The ```datum``` method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by those indices. The number of elements in the passed array must be equal to the number of variables in the current PC-Axis dataset. Each element must be a positive integer no greater than the number of possible values for the variable it represents.  
 
 For example, consider a dataset containing two variables, each of which has two possible values:
 
@@ -314,6 +314,23 @@ px.datum([1,1]);  // Data value for females in 2012
 ```
 
 __dataCol(Array-of-Array-Indices)__
+
+The ```dataCol``` method is similar to the datum method except that one of the elements in the passed array is replaced with a ```'*'``` character and rather than returning a single datum it returns an array of data. The length of the array returned by ```dataCol``` will be equal to the number of values in the variable represented by a ```'*'``` in the input array.
+
+For example, consider a dataset containing two variables, each of which has two possible values:
+
+// Two variables 
+px.variables();    // ['Sex', 'Year'] 
+
+// Each variable has two possible values 
+px.values('Sex');  // ['Male', 'Female'] 
+px.values('Year'); // ['2011', '2012'] 
+
+px.dataCol(['*',0]);   // [Data value for males in 2011, Data value for females in 2011] 
+px.datum([0,1]);   // Data value for males in 2012 
+px.datum([1,0]);   // Data value for females in 2011 
+px.datum([1,1]);   // Data value for females in 2012 
+```
 
 __dataDict(Array-of-Array-Indices)__
 
