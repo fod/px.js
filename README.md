@@ -328,9 +328,9 @@ px.values('Sex');  // ['Male', 'Female']
 px.values('Year'); // ['2011', '2012'] 
 
 px.dataCol(['*',0]);   // [Data value for males in 2011, Data value for females in 2011] 
-px.datum(['*',1]);   // [Data value for males in 2012, Data value for females in 2012]
-px.datum([0,'*']);   // [Data value for males in 2011, Data value for males in 2012]
-px.datum([1,'*']);   // [Data value for females in 2011, Data value for females in 2012]
+px.datCol(['*',1]);   // [Data value for males in 2012, Data value for females in 2012]
+px.datCol([0,'*']);   // [Data value for males in 2011, Data value for males in 2012]
+px.datCol([1,'*']);   // [Data value for females in 2011, Data value for females in 2012]
 ```
 
 __dataDict(Array-of-Array-Indices)__
