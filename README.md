@@ -142,7 +142,7 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 
 ### Construction
 
-A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the PX constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (resultText) call, as both of these return a string containing the target file's contents.
+A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the `Px` constructor. This will usually be done in the callback of a [`FileReader.readAsText()`](#localFile) or an [`XMLHttpRequest`](#remoteFile) (`resultText`) call, as both of these return a string containing the target file's contents.
 
 ```javascript
 var pxString; // String containing PC-Axis file's contents
@@ -157,7 +157,7 @@ Px attributes are not intended to be accessed directly. Data and metadata are ge
 
 __metadata__
 
-The metadata attribute is an object containing all of the PC-Axis file's metadata. Each of the metadata object's keys is a metadata keyword from the original PC-Axis file, each of its values is an object. Where a keyword in the original PC-Axis file has a single string value (meaning that the value applies to the entire dataset - e.g. the 'TITLE' keyword), then that keyword's value object contains a single key, 'TABLE', the value of which is the string to which that keyword pointed to in the original PC-Axis file.
+The `metadata` attribute is an object containing all of the PC-Axis file's metadata. Each of the metadata object's keys is a metadata keyword from the original PC-Axis file, each of its values is an object. Where a keyword in the original PC-Axis file has a single string value (meaning that the value applies to the entire dataset - e.g. the 'TITLE' keyword), then that keyword's value object contains a single key, 'TABLE', the value of which is the string to which that keyword pointed in the original PC-Axis file.
 
 ```javascript
 // Return metadata object
@@ -175,7 +175,7 @@ var regCodes = px.metadata.CODES.Region;
 
 __data__
 
-The data attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored unchanged in the data object.
+The `data` attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored unchanged in the data object.
 
 ```javascript
 // Return array of data
@@ -187,7 +187,7 @@ var data = px.data;
 
 __keyword(String)__
 
-The keyword method returns the value of the passed keyword. If the keyword holds a value which refers to the entire table (such as the 'TITLE' keyword), then that value is returned as a string. If the keyword passed to the method has different values for each variable (for example, the 'VALUES' and 'CODES' keywords will have a different list of values for each variable), then a reference to the object holding the entire set of values is returned by the method.
+The `keyword` method returns the _value_ of the passed _keyword_. If the _keyword_ holds a value which refers to the entire table (such as the 'TITLE' keyword), then that value is returned as a string. If the keyword passed to the method has different values for each variable (for example, the 'VALUES' and 'CODES' keywords will have a different list of values for each variable), then a reference to the object holding the entire set of values is returned by the method.
 
 ```javascript
 // Return the value of the title keyword as a string
@@ -199,7 +199,7 @@ var codes = px.keyword('CODES');
 
 __keywords()__
 
-The keywords method returns an array containing all of the metadata keywords associated with the PC-Axis dataset represented by the object.
+The `keywords` method returns an array containing all of the metadata _keywords_ associated with the PC-Axis dataset represented by the object.
 
 ```javascript
 // Return an array of keywords
@@ -208,7 +208,7 @@ var metaKeys = px.keywords();
 
 __title()__
 
-The title method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to ```metadata.TABLE.TITLE```.
+The `title` method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to `metadata.TABLE.TITLE`.
 
 ```javascript
 // Return TITLE of dataset
@@ -217,7 +217,7 @@ var title = px.title();
 
 __variables()__
 
-The variables method returns an array containing the names of all of the variables present in the current PC-Axis file. The variables in the returned array are ordered as they are in the PC-Axis file; first the 'STUB' variables, followed by the 'HEADING' variables.
+The `variables` method returns an array containing the names of all of the _variables_ present in the current PC-Axis file. The _variables_ in the returned array are ordered as they are in the PC-Axis file; first the STUB _variables_, followed by the HEADING _variables_.
 
 ```javascript
 // Return an array of variable names
@@ -315,7 +315,7 @@ px.datum([1,1]);  // Data value for females in 2012
 
 __dataCol(Array-of-Array-Indices)__
 
-The ```dataCol``` method is similar to the datum method except that one of the elements in the passed array is replaced with a ```'*'``` character and rather than returning a single datum it returns an array of data. The length of the array returned by ```dataCol``` will be equal to the number of values in the variable represented by a ```'*'``` in the input array.
+The ```dataCol``` method is similar to the datum method except that one of the elements in the passed array is replaced with a ```'*'``` character and rather than returning a single datum it returns an array of data containing datum for each possible value for the variable represented by the ```'*'```.
 
 For example, consider a dataset containing two variables, each of which has two possible values:
 
@@ -334,6 +334,8 @@ px.dataCol([1,'*']);  // [Data value for females in 2011, Data value for females
 ```
 
 __dataDict(Array-of-Array-Indices)__
+
+The ```dataDict``` method
 
 __entries()__
 
