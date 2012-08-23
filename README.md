@@ -337,7 +337,6 @@ __dataDict(Array-of-Array-Indices)__
 
 The ```dataDict``` method takes and array of _value_ indices, one of which is replaced with a ```'*'``` and returns an object, the keys of which are all of the possible _values_ for the variable represented by the ```'*'```, and the values are the data values associated with the key _value_ and the particular combination of other _value_ indices in the passed array.
 
-
 For example, consider a dataset containing two variables, each of which has two possible values:
 
 ```javascript
@@ -362,6 +361,26 @@ px.dataDict([1,'*']); // { '2011': Data value for females in 2011,
 ```
 
 __entries()__
+
+The ```entries``` method takes no arguments and returns an array of objects containing one object for each datum in the dataset. Each object contains a key for each variable in the dataset, as well as a value for that key, and an additional key, "num", the value of which is the data value associated with that particular combination of variable values.
+
+For example, consider a dataset containing two variables, each of which has two possible values:
+
+```javascript
+// Two variables 
+px.variables();       // ['Sex', 'Year'] 
+
+// Each variable has two possible values 
+px.values('Sex');     // ['Male', 'Female'] 
+px.values('Year');    // ['2011', '2012'] 
+
+px.entries(); // [ 
+              //   { 'Sex': 'Male',    Year': '2011', 'num': Data value for males in 2011   },
+              //   { 'Sex': 'Male',   'Year': '2012', 'num': Data value for males in 2012   },
+			  //   { 'Sex': 'Female', 'Year': '2011', 'num': Data value for females in 2011 },
+			  //   { 'Sex': 'Female', 'Year': '2012', 'num': Data value for females in 2012 }
+			  // ]
+```
 
 __truncate(Array-of-Arrays-of-Array-Indices)__
 
