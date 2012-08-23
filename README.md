@@ -375,8 +375,8 @@ px.values('Sex');     // ['Male', 'Female']
 px.values('Year');    // ['2011', '2012'] 
 
 px.entries(); // [ 
-              //   { 'Sex': 'Male',    Year': '2011', 'num': Data value for males in 2011   },
-              //   { 'Sex': 'Male',   'Year': '2012', 'num': Data value for males in 2012   },
+              //   { 'Sex': 'Male', 'Year': '2011', 'num': Data value for males in 2011 },
+              //   { 'Sex': 'Male', 'Year': '2012', 'num': Data value for males in 2012 },
 			  //   { 'Sex': 'Female', 'Year': '2011', 'num': Data value for females in 2011 },
 			  //   { 'Sex': 'Female', 'Year': '2012', 'num': Data value for females in 2012 }
 			  // ]
