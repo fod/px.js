@@ -142,7 +142,7 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 
 ### Construction
 
-A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the `Px` constructor. This will usually be done in the callback of a [`FileReader.readAsText()`](#localFile) or an [`XMLHttpRequest`](#remoteFile) (`resultText`) call, as both of these return a string containing the target file's contents.
+A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the `Px` constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (`resultText`) call, as both of these return a string containing the target file's contents.
 
 ```javascript
 var pxString; // String containing PC-Axis file's contents
@@ -315,7 +315,7 @@ px.datum([1,1]);  // Data value for females in 2012
 
 __dataCol(Array-of-Array-Indices)__
 
-The ```dataCol``` method is similar to the datum method except that one of the elements in the passed array is replaced with a ```'*'``` character and rather than returning a single datum it returns an array of data containing datum for each possible value for the variable represented by the ```'*'```.
+The ```dataCol``` method is similar to the datum method except that one of the elements in the passed array is replaced with a ```'*'``` character and rather than returning a single datum it returns an array of data containing a datum for each possible value for the variable represented by the ```'*'```.
 
 For example, consider a dataset containing two variables, each of which has two possible values:
 
@@ -335,7 +335,31 @@ px.dataCol([1,'*']);  // [Data value for females in 2011, Data value for females
 
 __dataDict(Array-of-Array-Indices)__
 
-The ```dataDict``` method
+The ```dataDict``` method takes and array of _value_ indices, one of which is replaced with a ```'*'``` and returns an object, the keys of which are all of the possible _values_ for the variable represented by the ```'*'```, and the values are the data values associated with the key _value_ and the particular combination of other _value_ indices in the passed array.
+
+
+For example, consider a dataset containing two variables, each of which has two possible values:
+
+```javascript
+// Two variables 
+px.variables();       // ['Sex', 'Year'] 
+
+// Each variable has two possible values 
+px.values('Sex');     // ['Male', 'Female'] 
+px.values('Year');    // ['2011', '2012'] 
+
+px.dataDict(['*',0]); // { 'Male': Data value for males in 2011, 
+                      //   'Female': Data value for females in 2011 }
+					   
+px.dataCol(['*',1]);  // { 'Male': Data value for males in 2012, 
+                      //   'Female': Data value for females in 2012 }
+
+px.dataCol([0,'*']);  // { '2011': Data value for males in 2011, 
+                      //   '2012': Data value for males in 2012 }
+
+px.dataCol([1,'*']);  // { '2011': Data value for females in 2011, 
+                      //   '2012': Data value for females in 2012 }
+```
 
 __entries()__
 
