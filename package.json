@@ -1,5 +1,5 @@
 {
-  "name": "px",
+  "name": "px.js",
   "description": "PC-Axis file parsing in JavaScript",
   "version": "0.1.0",
   "homepage": "https://github.com/fod/px.js",
@@ -39,3 +39,4 @@
   },
   "build": null
 }
+

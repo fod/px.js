@@ -384,7 +384,28 @@ px.entries(); // [
 
 __truncate(Array-of-Arrays-of-Array-Indices)__
 
-__subset(Array-of-Arrays-of-Array-Indices)__
+The ```truncate``` method removes values and associated data from the Px object. The method takes an array of arrays. Each nested array consists of a list of indices of the values to be kept for the variable represented by that array. A ```'*'``` in any variable's array indicates that all of that variable's values should be retained. This method alters the current Px object and returns nothing. Its intended use is to allow a very large dataset, only some of which is required, to be reduced to a more manageable size.
+
+For example, consider a dataset containing three variables, each of which has three possible values:
+
+```javascript
+// Two variables 
+px.variables();         // ['Sex', 'Year', 'Age Group'] 
+
+// Each variable has two possible values 
+px.values('Sex');       // ['Male', 'Female', 'Both Sexes'] 
+px.values('Year');      // ['2010', '2011', '2012']
+px.values('Age Group'); // ['<16', '17-64', '65+']
+
+// Retain 'Sex': 'Male', 'Female'; 'Year': '2012'; All Age Groups
+px.truncate([[0,1],[2],['*']]);
+
+// OR
+
+// Retain 'Sex': 'Both Sexes'; All Years; 'Age Group': '<16', '65+'
+px.truncate([[2],['*'],[0,2]]);
+
+```
 
 ## Extending Px.js
 
