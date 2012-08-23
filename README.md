@@ -351,13 +351,13 @@ px.values('Year');    // ['2011', '2012']
 px.dataDict(['*',0]); // { 'Male': Data value for males in 2011, 
                       //   'Female': Data value for females in 2011 }
 					   
-px.dataCol(['*',1]);  // { 'Male': Data value for males in 2012, 
+px.dataDict(['*',1]); // { 'Male': Data value for males in 2012, 
                       //   'Female': Data value for females in 2012 }
 
-px.dataCol([0,'*']);  // { '2011': Data value for males in 2011, 
+px.dataDict([0,'*']); // { '2011': Data value for males in 2011, 
                       //   '2012': Data value for males in 2012 }
 
-px.dataCol([1,'*']);  // { '2011': Data value for females in 2011, 
+px.dataDict([1,'*']); // { '2011': Data value for females in 2011, 
                       //   '2012': Data value for females in 2012 }
 ```
 
