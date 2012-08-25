@@ -85,7 +85,7 @@ Install the module with npm:
 then, in your code:
 
 ```javascript
-var Px = require('pxjs'),
+var Px = require('px'),
     fs = require('fs');
 	
 fs.readFile('path/to/PC-Axis/file', 'utf8', function(err, data) {
