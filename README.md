@@ -52,7 +52,7 @@ xhr.open('GET', 'path/to/remote/PC-Axis/file');
 xhr.send();
 ```
 
-<a name="localFile" />
+<a name="localFile"><\a>
 __For local PC-Axis files:__
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML...
