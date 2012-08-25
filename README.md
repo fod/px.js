@@ -80,7 +80,7 @@ function handlePxfile() {
 ### On the server
 Install the module with npm: 
 
-`npm install pxjs`
+`npm install px`
 
 then, in your code:
 
@@ -408,6 +408,7 @@ px.truncate([[2],['*'],[0,2]]);
 ```
 
 ## Extending Px.js
+
 
 
 ## Contributing
