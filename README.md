@@ -35,7 +35,6 @@ Include [Underscore](http://underscorejs.org) and Px.js in your HTML:
 
 then in your JavaScript:
 
-<a name="remoteFile" />
 __For remote PC-Axis files:__
 
 Pass the Px constructor the responseText from an XMLHttpRequest, for example: 
@@ -52,7 +51,6 @@ xhr.open('GET', 'path/to/remote/PC-Axis/file');
 xhr.send();
 ```
 
-<a name="localFile"><\a>
 __For local PC-Axis files:__
 
 Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML...
@@ -142,7 +140,7 @@ px.truncate([[2,3,4,5],['*'],['*'],['*']]);
 
 ### Construction
 
-A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the `Px` constructor. This will usually be done in the callback of a [FileReader.readAsText()](#localFile) or an [XMLHttpRequest](#remoteFile) (`resultText`) call, as both of these return a string containing the target file's contents.
+A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the `Px` constructor. This will usually be done in the callback of a `FileReader.readAsText()` or an `XMLHttpRequest` (`resultText`) call, as both of these return a string containing the target file's contents.
 
 ```javascript
 var pxString; // String containing PC-Axis file's contents
@@ -153,7 +151,7 @@ The Px constructor parses the PC-Axis file's data and metadata into two attribut
 
 ### Attributes
 
-Px attributes are not intended to be accessed directly. Data and metadata are generally accessed more easily and more consistently via the object's [methods](#methods).
+Px attributes are not intended to be accessed directly. Data and metadata are generally accessed more easily and more consistently via the object's methods.
 
 __metadata__
 
@@ -182,7 +180,6 @@ The `data` attribute is an array containing all of the values following the DATA
 var data = px.data;
 ```
 
-<a name="methods" />
 ### Methods
 
 __keyword(String)__
