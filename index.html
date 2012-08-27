@@ -1,82 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Px.js : PC-Axis file parsing in JavaScript" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Px.js by fod</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Px.js</title>
   </head>
-
   <body>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/fod/px.js">View on GitHub</a>
+      <header>
+        <h1>Px.js</h1>
+        <p>PC-Axis file parsing in JavaScript</p>
+      </header>
 
-          <h1 id="project_title">Px.js</h1>
-          <h2 id="project_tagline">PC-Axis file parsing in JavaScript</h2>
+      <div id="banner">
+        <span id="logo"></span>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/fod/px.js/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/fod/px.js/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+        <a href="https://github.com/fod/px.js" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/fod/px.js/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/fod/px.js/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>px.js - PC-Axis file parsing in JavaScript</h1>
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Px.js </h1>
 
-<h3>Dependencies</h3>
+<h2>PC-Axis file parsing in JavaScript</h2>
 
-<p><a href="http://underscorejs.org">underscore.js</a></p>
+<p>Px.js is a JavaScript library for extracting and manipulating data stored in PC-Axis files. It is intended as a generic solution which can handle any well-formed PC-Axis file.</p>
+
+<p>Px.js is primarily intended for use in a web browser but it can also be used as a Node.js module.</p>
+
+<h3>What is PC-Axis?</h3>
+
+<p>PC-Axis is a file format used for dissemination of statistical information. The format is used by a large number of national
+statistical organisations to disseminate official statistics. For general information on PC-Axis refer to the
+<a href="http://www.scb.se/Pages/StandardNoLeftMeny____314045.aspx">PC-Axis web site</a> and for information on the file format specifically, see the
+<a href="http://www.scb.se/Pages/List____314011.aspx">PC-Axis file format specification</a>.</p>
+
+<h2>Dependencies</h2>
+
+<p>Px.js is dependent on the <a href="http://underscorejs.org">Underscore</a> JavaScript utility library.</p>
+
+<h2>Getting Started</h2>
+
+<h3>In the browser</h3>
+
+<p>Download the minified <a href="https://raw.github.com/fod/px.js/master/dist/px.min.js">production version</a> or the <a href="https://raw.github.com/fod/px.js/master/dist/px.js">development version</a>.</p>
+
+<p>Include <a href="http://underscorejs.org">Underscore</a> and Px.js in your HTML:</p>
+
+<div class="highlight"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"path/to/underscore.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"path/to/px.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>then in your JavaScript:</p>
+
+<p><strong>For remote PC-Axis files:</strong></p>
+
+<p>Pass the Px constructor the responseText from an XMLHttpRequest, for example: </p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Px</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'path/to/remote/PC-Axis/file'</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</pre></div>
+
+<p><strong>For local PC-Axis files:</strong></p>
+
+<p>Use the FileReader API to pass the file to the Px constructor. For example, assuming a file input tag with the id 'pxfile' in your HTML...</p>
+
+<div class="highlight"><pre><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">id=</span><span class="s">"pxfile"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<p>...construct a new Px object in a callback triggered when a new file is selected:</p>
+
+<div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'pxfile'</span><span class="p">).</span><span class="nx">onchange</span> <span class="o">=</span> <span class="nx">handlePxfile</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">function</span> <span class="nx">handlePxfile</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">px</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Px</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>On the server</h3>
+
+<p>Install the module with npm: </p>
+
+<p><code>npm install px</code></p>
+
+<p>then, in your code:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Px</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'px'</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+
+<span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="s1">'path/to/PC-Axis/file'</span><span class="p">,</span> <span class="s1">'utf8'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">px</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Px</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>Documentation</h2>
 
 <h3>Synopsis</h3>
 
-<pre><code>// construction
-var pxfile = Px.new('path/to/pcaxis/file.px');
+<div class="highlight"><pre><span class="c1">// Constructor</span>
+<span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Px</span><span class="p">(</span><span class="nx">pxString</span><span class="p">);</span>
 
-// get values for keyword
-var title = pxfile.keyword('TITLE');
+<span class="c1">// return values for passed keyword</span>
+<span class="kd">var</span> <span class="nx">keyword</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">keyword</span><span class="p">(</span><span class="s1">'KEYWORD'</span><span class="p">);</span>
 
-// get array of keywords
-var keys = pxfile.keywords();
+<span class="c1">// return array containing all keywords</span>
+<span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">keywords</span><span class="p">();</span>
 
-// get array of variables (STUBs &amp; HEADINGs)
-var vars = pxfile.variables();
+<span class="c1">// return array containing all variables (STUBs &amp; HEADINGs)</span>
+<span class="kd">var</span> <span class="nx">vars</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>
 
-// get array of values for passed variable
-// (can take array index, regular expression, or variable name)
-var values = pxfile.values(variable);
+<span class="c1">// return variable at index 0 in variables array</span>
+<span class="kd">var</span> <span class="nx">variable</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-// get array of value CODEs for passed variable
-// (can take array index or variable name)
-var codes = pxfile.codes(variable);
+<span class="c1">// return index of Region variable in variables array </span>
+<span class="kd">var</span> <span class="nx">variable</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variable</span><span class="p">(</span><span class="s1">'Region'</span><span class="p">);</span>
 
-// get the data value for a passed array of variable values
-var datapoint = pxfile.datum([0,0,0,0]);
+<span class="c1">// return array of values for passed variable</span>
+<span class="c1">// (can take array index or variable name)</span>
+<span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">variable</span><span class="p">);</span>
 
-// get a column of data
-var column = pxfile.datacol(['*',0,0,0]);    
-</code></pre>
+<span class="c1">// return array of value codes for passed variable</span>
+<span class="c1">// (can take array index or variable name)</span>
+<span class="kd">var</span> <span class="nx">codes</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">codes</span><span class="p">(</span><span class="nx">variable</span><span class="p">);</span>
+
+<span class="c1">// return the data value for a passed array of variable values</span>
+<span class="kd">var</span> <span class="nx">datapoint</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">datum</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">// return a column of data</span>
+<span class="kd">var</span> <span class="nx">column</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">dataCol</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">// return an associative array of data in the form: {valueName: data}</span>
+<span class="kd">var</span> <span class="nx">column</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">dataDict</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="c1">// Return an array of data objects, one for each datum</span>
+<span class="kd">var</span> <span class="nx">entries</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">entries</span><span class="p">();</span>
+
+<span class="c1">// Remove values and associated data from Px object</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">truncate</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="s1">'*'</span><span class="p">],[</span><span class="s1">'*'</span><span class="p">],[</span><span class="s1">'*'</span><span class="p">]]);</span>
+</pre></div>
+
+<h3>Construction</h3>
+
+<p>A new PC-Axis object is constructed by passing a string containing a PC-Axis file's contents to the <code>Px</code> constructor. This will usually be done in the callback of a <code>FileReader.readAsText()</code> or an <code>XMLHttpRequest</code> (<code>resultText</code>) call, as both of these return a string containing the target file's contents.</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">pxString</span><span class="p">;</span> <span class="c1">// String containing PC-Axis file's contents</span>
+<span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Px</span><span class="p">(</span><span class="nx">pxString</span><span class="p">);</span>
+</pre></div>
+
+<p>The Px constructor parses the PC-Axis file's data and metadata into two attributes, data and metadata, and returns an object equipped with a number of methods to access and manipulate its contents.</p>
+
+<h3>Attributes</h3>
+
+<p>Px attributes are not intended to be accessed directly. Data and metadata are generally accessed more easily and more consistently via the object's methods.</p>
+
+<p><strong>metadata</strong></p>
+
+<p>The <code>metadata</code> attribute is an object containing all of the PC-Axis file's metadata. Each of the metadata object's keys is a metadata keyword from the original PC-Axis file, each of its values is an object. Where a keyword in the original PC-Axis file has a single string value (meaning that the value applies to the entire dataset - e.g. the 'TITLE' keyword), then that keyword's value object contains a single key, 'TABLE', the value of which is the string to which that keyword pointed in the original PC-Axis file.</p>
+
+<div class="highlight"><pre><span class="c1">// Return metadata object</span>
+<span class="kd">var</span> <span class="nx">meta</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">metadata</span><span class="p">;</span>
+
+<span class="c1">// Return dataset's TITLE value as string</span>
+<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">TITLE</span><span class="p">.</span><span class="nx">TABLE</span><span class="p">;</span>
+
+<span class="c1">// Return object with variables as keys and arrays of codes as values</span>
+<span class="kd">var</span> <span class="nx">codes</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">CODES</span><span class="p">;</span>
+
+<span class="c1">// Return array of codes for Region variable</span>
+<span class="kd">var</span> <span class="nx">regCodes</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">CODES</span><span class="p">.</span><span class="nx">Region</span><span class="p">;</span>
+</pre></div>
+
+<p><strong>data</strong></p>
+
+<p>The <code>data</code> attribute is an array containing all of the values following the DATA keyword in the original PC-Axis file. The data are stored as strings. Missing or obfuscated data values (encoded usually as a series of dots ("..") or a dash ("-") in Pc-Axis files) are stored unchanged in the data object.</p>
+
+<div class="highlight"><pre><span class="c1">// Return array of data</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+</pre></div>
+
+<h3>Methods</h3>
+
+<p><strong>keyword(String)</strong></p>
+
+<p>The <code>keyword</code> method returns the <em>value</em> of the passed <em>keyword</em>. If the <em>keyword</em> holds a value which refers to the entire table (such as the 'TITLE' keyword), then that value is returned as a string. If the keyword passed to the method has different values for each variable (for example, the 'VALUES' and 'CODES' keywords will have a different list of values for each variable), then a reference to the object holding the entire set of values is returned by the method.</p>
+
+<div class="highlight"><pre><span class="c1">// Return the value of the title keyword as a string</span>
+<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">keyword</span><span class="p">(</span><span class="s1">'TITLE'</span><span class="p">);</span>
+
+<span class="c1">// Return object with variables as keys and arrays of codes as values</span>
+<span class="kd">var</span> <span class="nx">codes</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">keyword</span><span class="p">(</span><span class="s1">'CODES'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>keywords()</strong></p>
+
+<p>The <code>keywords</code> method returns an array containing all of the metadata <em>keywords</em> associated with the PC-Axis dataset represented by the object.</p>
+
+<div class="highlight"><pre><span class="c1">// Return an array of keywords</span>
+<span class="kd">var</span> <span class="nx">metaKeys</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">keywords</span><span class="p">();</span>
+</pre></div>
+
+<p><strong>title()</strong></p>
+
+<p>The <code>title</code> method is a convenience method which returns the TITLE attribute of the dataset. It is equivalent to <code>metadata.TABLE.TITLE</code>.</p>
+
+<div class="highlight"><pre><span class="c1">// Return TITLE of dataset</span>
+<span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">title</span><span class="p">();</span>
+</pre></div>
+
+<p><strong>variables()</strong></p>
+
+<p>The <code>variables</code> method returns an array containing the names of all of the <em>variables</em> present in the current PC-Axis file. The <em>variables</em> in the returned array are ordered as they are in the PC-Axis file; first the STUB <em>variables</em>, followed by the HEADING <em>variables</em>.</p>
+
+<div class="highlight"><pre><span class="c1">// Return an array of variable names</span>
+<span class="kd">var</span> <span class="nx">variables</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>
+</pre></div>
+
+<p><strong>variable(String or Array-Index)</strong></p>
+
+<p>When passed an array index the variable method returns the variable name at that index in an array composed of [STUB variables, HEADING variables] - i.e. the array returned by the variables method.</p>
+
+<p>When passed a string (containing a variable name) this method returns the index in the variables array at which the named variable occurs.</p>
+
+<div class="highlight"><pre><span class="c1">// Return the name of the variable at position 0 in the variables array</span>
+<span class="kd">var</span> <span class="nx">varName</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Return the position (array index) of the 'Region' variable in the variables array</span>
+<span class="kd">var</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">variable</span><span class="p">(</span><span class="s1">'Region'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>valCounts()</strong></p>
+
+<p>Returns an array of value counts. Each element in the array is the number of possible values in the current PC-Axis dataset for the variable with the same index (in the variables array) as the element.</p>
+
+<div class="highlight"><pre><span class="c1">// Return array of value counts</span>
+<span class="kd">var</span> <span class="nx">counts</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">valCounts</span><span class="p">();</span>
+</pre></div>
+
+<p><strong>values(String or Array-Index)</strong></p>
+
+<p>When passed the name of a variable or the index of a variable in the variables array the values method returns an array containing the names of all possible values for that variable.</p>
+
+<p>The order of the values in the array returned by this method matches the order in the original file.</p>
+
+<div class="highlight"><pre><span class="c1">// Return an array of all possible values (by name) for the variable at position 0 in the variables array</span>
+<span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Return an array of possible values (by name) for the 'Region' variable</span>
+<span class="kd">var</span> <span class="nx">vals</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Region'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>codes(String or Array-Index)</strong></p>
+
+<p>When passed the name of a variable or the index of a variable in the variables array the codes method returns an array containing the codes for all possible values for that variable.</p>
+
+<p>The order of the value codes in the array returned by this method matches the order in the original file.</p>
+
+<div class="highlight"><pre><span class="c1">// Return an array of all possible values (by code) for the variable at position 0 in the variables array</span>
+<span class="kd">var</span> <span class="nx">codes</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">codes</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Return an array of possible values (by code) for the 'Region' variable</span>
+<span class="kd">var</span> <span class="nx">codess</span> <span class="o">=</span> <span class="nx">px</span><span class="p">.</span><span class="nx">codes</span><span class="p">(</span><span class="s1">'Region'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>value(String, String)</strong></p>
+
+<p>Returns the value name corresponding to the value code and variable name passed.</p>
+
+<div class="highlight"><pre><span class="c1">// Return the value for the 'Region' variable, for which the code is '01'</span>
+<span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="nx">value</span><span class="p">(</span><span class="s1">'01'</span><span class="p">,</span> <span class="s1">'Region'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>code(String, String)</strong></p>
+
+<p>Returns the code corresponding to the value name and variable name passed.</p>
+
+<div class="highlight"><pre><span class="c1">// Return the code for the 'Region' variable named 'State'</span>
+<span class="kd">var</span> <span class="nx">code</span> <span class="o">=</span> <span class="nx">value</span><span class="p">(</span><span class="s1">'State'</span><span class="p">,</span> <span class="s1">'Region'</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>datum(Array-of-Array-Indices)</strong></p>
+
+<p>The <code>datum</code> method takes an array of value indices and returns the data value corresponding to the particular combination of values represented by those indices. The number of elements in the passed array must be equal to the number of variables in the current PC-Axis dataset. Each element must be a positive integer no greater than the number of possible values for the variable it represents.  </p>
+
+<p>For example, consider a dataset containing two variables, each of which has two possible values:</p>
+
+<div class="highlight"><pre><span class="c1">// Two variables</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>    <span class="c1">// ['Sex', 'Year']</span>
+
+<span class="c1">// Each variable has two possible values</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Sex'</span><span class="p">);</span>  <span class="c1">// ['Male', 'Female']</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">);</span> <span class="c1">// ['2011', '2012']</span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">datum</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>  <span class="c1">// Data value for males in 2011</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">datum</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>  <span class="c1">// Data value for males in 2012</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">datum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>  <span class="c1">// Data value for females in 2011</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">datum</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>  <span class="c1">// Data value for females in 2012</span>
+</pre></div>
+
+<p><strong>dataCol(Array-of-Array-Indices)</strong></p>
+
+<p>The <code>dataCol</code> method is similar to the datum method except that one of the elements in the passed array is replaced with a <code>'*'</code> character and rather than returning a single datum it returns an array of data containing a datum for each possible value for the variable represented by the <code>'*'</code>.</p>
+
+<p>For example, consider a dataset containing two variables, each of which has two possible values:</p>
+
+<div class="highlight"><pre><span class="c1">// Two variables </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>       <span class="c1">// ['Sex', 'Year'] </span>
+
+<span class="c1">// Each variable has two possible values </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Sex'</span><span class="p">);</span>     <span class="c1">// ['Male', 'Female'] </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">);</span>    <span class="c1">// ['2011', '2012'] </span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataCol</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>  <span class="c1">// [Data value for males in 2011, Data value for females in 2011] </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataCol</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span>  <span class="c1">// [Data value for males in 2012, Data value for females in 2012]</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataCol</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="s1">'*'</span><span class="p">]);</span>  <span class="c1">// [Data value for males in 2011, Data value for males in 2012]</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataCol</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="s1">'*'</span><span class="p">]);</span>  <span class="c1">// [Data value for females in 2011, Data value for females in 2012]</span>
+</pre></div>
+
+<p><strong>dataDict(Array-of-Array-Indices)</strong></p>
+
+<p>The <code>dataDict</code> method takes and array of <em>value</em> indices, one of which is replaced with a <code>'*'</code> and returns an object, the keys of which are all of the possible <em>values</em> for the variable represented by the <code>'*'</code>, and the values are the data values associated with the key <em>value</em> and the particular combination of other <em>value</em> indices in the passed array.</p>
+
+<p>For example, consider a dataset containing two variables, each of which has two possible values:</p>
+
+<div class="highlight"><pre><span class="c1">// Two variables </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>       <span class="c1">// ['Sex', 'Year'] </span>
+
+<span class="c1">// Each variable has two possible values </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Sex'</span><span class="p">);</span>     <span class="c1">// ['Male', 'Female'] </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">);</span>    <span class="c1">// ['2011', '2012'] </span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataDict</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// { 'Male': Data value for males in 2011, </span>
+                      <span class="c1">//   'Female': Data value for females in 2011 }</span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataDict</span><span class="p">([</span><span class="s1">'*'</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// { 'Male': Data value for males in 2012, </span>
+                      <span class="c1">//   'Female': Data value for females in 2012 }</span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataDict</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="s1">'*'</span><span class="p">]);</span> <span class="c1">// { '2011': Data value for males in 2011, </span>
+                      <span class="c1">//   '2012': Data value for males in 2012 }</span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">dataDict</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="s1">'*'</span><span class="p">]);</span> <span class="c1">// { '2011': Data value for females in 2011, </span>
+                      <span class="c1">//   '2012': Data value for females in 2012 }</span>
+</pre></div>
+
+<p><strong>entries()</strong></p>
+
+<p>The <code>entries</code> method takes no arguments and returns an array of objects containing one object for each datum in the dataset. Each object contains a key for each variable in the dataset, as well as a value for that key, and an additional key, "num", the value of which is the data value associated with that particular combination of variable values.</p>
+
+<p>For example, consider a dataset containing two variables, each of which has two possible values:</p>
+
+<div class="highlight"><pre><span class="c1">// Two variables </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>       <span class="c1">// ['Sex', 'Year'] </span>
+
+<span class="c1">// Each variable has two possible values </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Sex'</span><span class="p">);</span>     <span class="c1">// ['Male', 'Female'] </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">);</span>    <span class="c1">// ['2011', '2012'] </span>
+
+<span class="nx">px</span><span class="p">.</span><span class="nx">entries</span><span class="p">();</span> <span class="c1">// [ </span>
+              <span class="c1">//   { 'Sex': 'Male', 'Year': '2011', 'num': Data value for males in 2011 },</span>
+              <span class="c1">//   { 'Sex': 'Male', 'Year': '2012', 'num': Data value for males in 2012 },</span>
+              <span class="c1">//   { 'Sex': 'Female', 'Year': '2011', 'num': Data value for females in 2011 },</span>
+              <span class="c1">//   { 'Sex': 'Female', 'Year': '2012', 'num': Data value for females in 2012 }</span>
+              <span class="c1">// ]</span>
+</pre></div>
+
+<p><strong>truncate(Array-of-Arrays-of-Array-Indices)</strong></p>
+
+<p>The <code>truncate</code> method removes values and associated data from the Px object. The method takes an array of arrays. Each nested array consists of a list of indices of the values to be kept for the variable represented by that array. A <code>'*'</code> in any variable's array indicates that all of that variable's values should be retained. This method alters the current Px object and returns nothing. Its intended use is to allow a very large dataset, only some of which is required, to be reduced to a more manageable size.</p>
+
+<p>For example, consider a dataset containing three variables, each of which has three possible values:</p>
+
+<div class="highlight"><pre><span class="c1">// Two variables </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">variables</span><span class="p">();</span>         <span class="c1">// ['Sex', 'Year', 'Age Group'] </span>
+
+<span class="c1">// Each variable has two possible values </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Sex'</span><span class="p">);</span>       <span class="c1">// ['Male', 'Female', 'Both Sexes'] </span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Year'</span><span class="p">);</span>      <span class="c1">// ['2010', '2011', '2012']</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="s1">'Age Group'</span><span class="p">);</span> <span class="c1">// ['&lt;16', '17-64', '65+']</span>
+
+<span class="c1">// Retain 'Sex': 'Male', 'Female'; 'Year': '2012'; All Age Groups</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">truncate</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="s1">'*'</span><span class="p">]]);</span>
+
+<span class="c1">// OR</span>
+
+<span class="c1">// Retain 'Sex': 'Both Sexes'; All Years; 'Age Group': '&lt;16', '65+'</span>
+<span class="nx">px</span><span class="p">.</span><span class="nx">truncate</span><span class="p">([[</span><span class="mi">2</span><span class="p">],[</span><span class="s1">'*'</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]);</span>
+
+</pre></div>
+
+<h2>Extending Px.js</h2>
+
+<h2>Contributing</h2>
+
+<h2>Bugs</h2>
+
+<h2>Release History</h2>
+
+<h2>License</h2>
+
+<p>Copyright (c) 2012 Fiachra O'Donoghue<br>
+Licensed under the MIT license.</p>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Px.js maintained by <a href="https://github.com/fod">fod</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/fod">fod</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
       </footer>
     </div>
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
-
   </body>
 </html>
