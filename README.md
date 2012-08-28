@@ -420,6 +420,7 @@ The `px-extension.js` file might look like this:
 
 ```javascript```
 (function() {
+
     var px = Px.prototype;
 	
 	px.someMethod = function() {
