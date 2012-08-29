@@ -418,9 +418,8 @@ To extend Px.js, simply add methods or attributes to `Px.prototype`. The best wa
 
 The `px-extension.js` file might look like this:
 
-```javascript```
+```javascript
 (function() {
-
     var px = Px.prototype;
 	
 	px.someMethod = function() {
@@ -430,6 +429,7 @@ The `px-extension.js` file might look like this:
 	px.someAttribute = {...};
 	
 }());
+
 ```
 
 In Node simply `require()` your extension after the `px` library.

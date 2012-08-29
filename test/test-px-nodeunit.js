@@ -219,7 +219,7 @@ var runTests = function(i) {
 
 
 	// Px.truncate()
-	// truncate tests must be run last as 
+	// truncate tests must be run last as they alter the Px object
         test.done();
     };
 
