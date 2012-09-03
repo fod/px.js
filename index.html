@@ -424,17 +424,18 @@ statistical organisations to disseminate official statistics. For general inform
 
 <p>The <code>px-extension.js</code> file might look like this:</p>
 
-<pre lang="javascript```"><code>(function() {
-    var px = Px.prototype;
+<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">px</span> <span class="o">=</span> <span class="nx">Px</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
-    px.someMethod = function() {
-        ...
-    };
+    <span class="nx">px</span><span class="p">.</span><span class="nx">someMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="p">...</span>
+    <span class="p">};</span>
 
-    px.someAttribute = {...};
+    <span class="nx">px</span><span class="p">.</span><span class="nx">someAttribute</span> <span class="o">=</span> <span class="p">{...};</span>
 
-}());
-</code></pre>
+<span class="p">}());</span>
+
+</pre></div>
 
 <p>In Node simply <code>require()</code> your extension after the <code>px</code> library.</p>
 
