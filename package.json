@@ -2,7 +2,7 @@
   "name": "px",
   "description": "PC-Axis file parsing in JavaScript",
   "version": "0.1.1",
-  "homepage": "https://github.com/fod/px.js",
+  "homepage": "http://fod.github.com/px.js/",
   "author": {
     "name": "Fiachra O'Donoghue",
     "email": "fodonoghue@gmail.com"
