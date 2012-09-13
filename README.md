@@ -386,10 +386,10 @@ The `truncate` method removes values and associated data from the Px object. The
 For example, consider a dataset containing three variables, each of which has three possible values:
 
 ```javascript
-// Two variables 
+// Three variables 
 px.variables();         // ['Sex', 'Year', 'Age Group'] 
 
-// Each variable has two possible values 
+// Each variable has three possible values 
 px.values('Sex');       // ['Male', 'Female', 'Both Sexes'] 
 px.values('Year');      // ['2010', '2011', '2012']
 px.values('Age Group'); // ['<16', '17-64', '65+']
