@@ -24,7 +24,7 @@
      "numData":1484,
      "firstDatum":100000.000000,
      "lastDatum":0.770000,
-     "midDatum":0.00295,
+     "midDatum":0.002950,
      "numVals":[2,106,1,7],
      "varNames":["Sex","Age x","Year","Statistic"],
      "firstMidLastVals":[["Male","Female","Female"],["Birth","53 years","105 years"],["2006","2006","2006"],["Ix (Number)","qx (Rate)","e0x (Number)"]],
