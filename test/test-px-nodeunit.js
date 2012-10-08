@@ -1,6 +1,7 @@
 GLOBAL._ = require('underscore');
+
 var Px = require('../lib/px.js'),
-fs = require('fs');
+    fs = require('fs');
 
 var testData = require('./testData.json');
 
