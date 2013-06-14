@@ -71,6 +71,7 @@ function handlePxfile() {
     reader.onload = function() {
 		return px = new Px(reader.result);
 	};
+	
 	reader.readAsText(this.files[0]);
 }
 ```

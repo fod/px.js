@@ -1,6 +1,6 @@
-/*! px - v0.1.2 - 2012-09-13
+/*! px - v0.1.2 - 2013-06-14
 * http://fod.github.com/px.js/
-* Copyright (c) 2012 Fiachra O'Donoghue; Licensed MIT */
+* Copyright (c) 2013 Fiachra O'Donoghue; Licensed MIT */
 
 (function() {
     'use strict';
